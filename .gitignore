@@ -1,0 +1,9 @@
+dist
+dist/
+.pnpm-debug.log
+.swc
+node_modules
+coverage
+.DS_Store
+.vscode
+.npmrc
