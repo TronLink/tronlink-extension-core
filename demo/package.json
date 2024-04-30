@@ -1,0 +1,19 @@
+{
+  "name": "tronlink-core-example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "demo": "ts-node create_account.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tronlink/core": "1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,13 @@
+.DS_Store
+coverage
+.vscode
+.idea
+.npmrc
+.prettierrc.js
+.editorconfig
+babel.config.js
+jest.config.js
+webpack.config.js
+tsconfig.json
+src/tests
+demo
