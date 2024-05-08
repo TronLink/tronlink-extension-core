@@ -18,7 +18,7 @@ export class LedgerEthWebHid extends LedgerWebHid {
     try {
       await this.makeApp();
       const response = await this._app!.clearSignTransaction(path, transaction, {
-        nft: false,
+        nft: true,
         externalPlugins: true,
         erc20: true,
       });
