@@ -14,9 +14,6 @@
     "TRON",
     "tronlink"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "main": "dist/index.js",
   "engines": {
     "node": "18.19.0",
