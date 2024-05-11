@@ -14,10 +14,6 @@
     "TRON",
     "tronlink"
   ],
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
   "main": "dist/index.js",
   "engines": {
     "node": "18.19.0",
