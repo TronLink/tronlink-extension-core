@@ -44,7 +44,7 @@ describe('LedgerEthWebHid - signTransaction', () => {
       mockPath,
       mockTransaction,
       expect.objectContaining({
-        nft: false,
+        nft: true,
         externalPlugins: true,
         erc20: true,
       }),

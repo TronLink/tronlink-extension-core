@@ -60,7 +60,7 @@ These instructions will get you a copy of the project up and running on your loc
 - TypeScript >= 4.9.5
 
 
-### build @tronlink/core
+### Build @tronlink/core
 ##### 1. Install pnpm
 
 This project recommends using `pnpm` as the build tool
