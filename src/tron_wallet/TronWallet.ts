@@ -3,7 +3,7 @@ import * as bip32 from 'bip32';
 // @ts-ignore
 import bip39 from 'bip39';
 // @ts-ignore
-import TronWeb from 'tronweb';
+import { TronWeb } from 'tronweb';
 
 import type {
   DerivePrivateKeyParams,
@@ -35,6 +35,7 @@ export class TronWallet extends BaseWallet {
   getAddressBy(params: GetAddressParams): string {
     // @ts-ignore
     const address = TronWeb.address.fromPrivateKey(params.privateKey);
+    // @ts-ignore
     return address;
   }
 

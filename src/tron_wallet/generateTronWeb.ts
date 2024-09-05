@@ -1,5 +1,5 @@
 // @ts-ignore
-import TronWeb from 'tronweb';
+import { TronWeb } from 'tronweb';
 
 import { httpProxy } from '../utils';
 import { TRONGRID_API_URL } from './constants';
@@ -8,6 +8,7 @@ export function generateTronWeb(nodeInfo: any) {
   try {
     const { fullNode, solidityNode, eventServer, headers } = nodeInfo;
     const tronWeb = new TronWeb(
+      // @ts-ignore
       new httpProxy({ host: fullNode, headers }),
       new httpProxy({ host: solidityNode, headers }),
       new httpProxy({ host: eventServer, headers }),

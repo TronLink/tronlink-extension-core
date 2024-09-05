@@ -1,5 +1,5 @@
 // @ts-ignore
-import TronWeb from 'tronweb';
+import { TronWeb } from 'tronweb';
 
 import { generateTronWeb } from '../../tron_wallet/generateTronWeb';
 import { nodeInfo } from './constants';
