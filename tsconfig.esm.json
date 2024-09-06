@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2022",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "outDir": "dist/esm"
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "src/tests"
+  ]
+}

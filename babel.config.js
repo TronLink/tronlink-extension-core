@@ -6,7 +6,6 @@ module.exports = function (api) {
       '@babel/preset-env',
       {
         loose: true,
-        targets: '> 0.25%, not dead',
       },
     ],
     '@babel/preset-typescript',
@@ -25,6 +24,7 @@ module.exports = function (api) {
     ],
     '@babel/plugin-transform-optional-chaining',
     ['@babel/plugin-transform-class-properties', { loose: true }],
+    // ['@babel/plugin-transform-classes', { loose: true }],
     ['@babel/plugin-transform-template-literals', { loose: true }],
   ];
 
