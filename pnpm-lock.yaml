@@ -12,6 +12,7 @@ overrides:
   secp256k1: 4.0.4
   http-proxy-middleware: 2.0.7
   cookie: 0.7.0
+  cross-spawn: 7.0.5
 
 specifiers:
   '@babel/core': 7.23.7
@@ -3593,8 +3594,8 @@ packages:
       - ts-node
     dev: true
 
-  /cross-spawn/7.0.3:
-    resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
+  /cross-spawn/7.0.5:
+    resolution: {integrity: sha512-ZVJrKKYunU38/76t0RMOulHOnUcbU9GbpWKAOZ0mhjr7CX6FVrH+4FrAapSOekrgFQ3f/8gwMEuIft0aKq6Hug==}
     engines: {node: '>= 8'}
     dependencies:
       path-key: 3.1.1
@@ -4084,7 +4085,7 @@ packages:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.5
       get-stream: 6.0.1
       human-signals: 2.1.0
       is-stream: 2.0.1
@@ -4255,7 +4256,7 @@ packages:
     resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==}
     engines: {node: '>=14'}
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.5
       signal-exit: 4.1.0
     dev: true
 
@@ -6908,7 +6909,7 @@ packages:
       '@webpack-cli/serve': 1.7.0_w6jirb4vdg5534jnfm5c75cb6a
       colorette: 2.0.20
       commander: 7.2.0
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.5
       fastest-levenshtein: 1.0.16
       import-local: 3.1.0
       interpret: 2.2.0
