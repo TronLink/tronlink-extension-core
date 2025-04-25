@@ -10,7 +10,7 @@ overrides:
   express: 4.20.0
   send: 0.19.0
   secp256k1: 4.0.4
-  http-proxy-middleware: 2.0.7
+  http-proxy-middleware: 2.0.9
   cookie: 0.7.0
   cross-spawn: 7.0.5
   path-to-regexp@<0.1.12: 0.1.12
@@ -59,7 +59,7 @@ specifiers:
   stream-browserify: 3.0.0
   stream-http: 3.2.0
   terser-webpack-plugin: 5.3.7
-  tronweb: 5.3.2
+  tronweb: 5.3.4
   ts-jest: 29.1.1
   typescript: 4.9.5
   url: 0.11.0
@@ -93,7 +93,7 @@ dependencies:
   querystring-es3: 0.2.1
   stream-browserify: 3.0.0
   stream-http: 3.2.0
-  tronweb: 5.3.2
+  tronweb: 5.3.4
   url: 0.11.0
   util: 0.12.5
 
@@ -4561,8 +4561,8 @@ packages:
     resolution: {integrity: sha512-SGeBX54F94Wgu5RH3X5jsDtf4eHyRogWX1XGT3b4HuW3tQPM4AaBzoUji/4AAJNXCEOWZ5O0DgZmJw1947gD5Q==}
     dev: true
 
-  /http-proxy-middleware/2.0.7_@types+express@4.17.21:
-    resolution: {integrity: sha512-fgVY8AV7qU7z/MmXJ/rxwbrtQH4jBQ9m7kp3llF0liB7glmFeVZFBepQb32T3y8n8k2+AEYuMPCpinYW+/CuRA==}
+  /http-proxy-middleware/2.0.9_@types+express@4.17.21:
+    resolution: {integrity: sha512-c1IyJYLYppU574+YI7R4QyX2ystMtVXZwIdzazUIPIJsHuWNd+mho2j+bKoHftndicGj9yh+xjd+l0yj7VeT1Q==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@types/express': ^4.17.13
@@ -6702,8 +6702,8 @@ packages:
     engines: {node: '>=0.6'}
     dev: true
 
-  /tronweb/5.3.2:
-    resolution: {integrity: sha512-iPcIjMCxb6H7FXMntAj47F3L+7jSideyQ7ZOvRj9MeZBh46SHevMrDDR57HzakUa/tT8VvlPFHtqFK4hzTLkXw==}
+  /tronweb/5.3.4:
+    resolution: {integrity: sha512-79HEnwSAqyCKrT7QB8dkxad0RqYx3dSulEg4dfBQQVwzhRr+AqdE1yz+nfTUpftu54RejqaHjqz40ZzWNy077w==}
     dependencies:
       '@babel/runtime': 7.26.10
       '@ethersproject/abi': 5.7.0
@@ -7004,7 +7004,7 @@ packages:
       express: 4.20.0
       graceful-fs: 4.2.11
       html-entities: 2.5.2
-      http-proxy-middleware: 2.0.7_@types+express@4.17.21
+      http-proxy-middleware: 2.0.9_@types+express@4.17.21
       ipaddr.js: 2.2.0
       launch-editor: 2.6.1
       open: 8.4.2
