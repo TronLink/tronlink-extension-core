@@ -1,5 +1,5 @@
 // @ts-ignore
-import TronWeb from 'tronweb';
+import { TronWeb } from 'tronweb';
 
 import { InvalidParameterError, SignError } from '../../../base_wallet/error';
 import { LedgerTrxSigner } from '../../../tron_wallet';

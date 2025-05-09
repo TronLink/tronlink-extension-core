@@ -1,9 +1,9 @@
 // @ts-ignore
-import TronWeb from 'tronweb';
+import { providers } from 'tronweb';
 import fetchApi from './fetch';
 // use fetch
 
-const { HttpProvider } = TronWeb.providers;
+const { HttpProvider } = providers;
 
 interface Params {
   host: string;
@@ -15,6 +15,7 @@ interface Params {
 }
 
 export default class httpProxy extends HttpProvider {
+  // @ts-ignore
   private instance: fetchApi;
 
   constructor({
@@ -42,8 +43,9 @@ export default class httpProxy extends HttpProvider {
     fetchInstance.config(params);
     return fetchInstance;
   }
-
+  // @ts-ignore
   request(endpoint: any, payload = {}, method = 'get') {
+    // @ts-ignore
     return super.request(endpoint, payload, method);
   }
 }

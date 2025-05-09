@@ -14,14 +14,15 @@
     "TRON",
     "tronlink"
   ],
-  "main": "dist/index.js",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/esm/index.js",
   "engines": {
     "node": "18.19.0",
     "pnpm": "7.32.0"
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "pnpm run clean && webpack --progress --color && tsc",
+    "build": "pnpm run clean && webpack --progress --color && tsc -p tsconfig.json && tsc -p tsconfig.esm.json",
     "start": "NODE_ENV=development npx webpack serve",
     "build:dev": "NODE_ENV=development pnpm run build",
     "clean": "rimraf dist"
@@ -51,7 +52,7 @@
     "querystring-es3": "0.2.1",
     "stream-browserify": "3.0.0",
     "stream-http": "3.2.0",
-    "tronweb": "5.3.4",
+    "tronweb": "6.0.2",
     "url": "0.11.0",
     "util": "0.12.5"
   },
