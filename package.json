@@ -1,6 +1,6 @@
 {
   "name": "@tronlink/core",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "The library serves as a core module within TronLink Extension, which provides low-level wallet functionality for both Tron and Ethereum networks, primary features includes account generation and transaction signing",
   "repository": {
     "type": "git",
@@ -14,14 +14,15 @@
     "TRON",
     "tronlink"
   ],
-  "main": "dist/index.js",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/esm/index.js",
   "engines": {
     "node": "18.19.0",
     "pnpm": "7.32.0"
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "pnpm run clean && webpack --progress --color && tsc",
+    "build": "pnpm run clean && webpack --progress --color && tsc -p tsconfig.json && tsc -p tsconfig.esm.json",
     "start": "NODE_ENV=development npx webpack serve",
     "build:dev": "NODE_ENV=development pnpm run build",
     "clean": "rimraf dist"
@@ -51,7 +52,7 @@
     "querystring-es3": "0.2.1",
     "stream-browserify": "3.0.0",
     "stream-http": "3.2.0",
-    "tronweb": "5.3.4",
+    "tronweb": "6.0.3",
     "url": "0.11.0",
     "util": "0.12.5"
   },
@@ -65,7 +66,7 @@
     "@babel/preset-env": "7.23.7",
     "@babel/preset-typescript": "7.23.3",
     "@types/jest": "29.5.11",
-    "@types/node": "20.10.7",
+    "@types/node": "22.15.17",
     "@types/w3c-web-hid": "1.0.6",
     "babel-loader": "8.3.0",
     "clean-webpack-plugin": "4.0.0",
@@ -75,7 +76,7 @@
     "rimraf": "5.0.5",
     "terser-webpack-plugin": "5.3.7",
     "ts-jest": "29.1.1",
-    "typescript": "4.9.5",
+    "typescript": "5.8.3",
     "webpack": "5.94.0",
     "webpack-cli": "4.10.0",
     "webpack-dev-server": "4.13.2",
@@ -99,7 +100,8 @@
       "path-to-regexp@<0.1.12": "0.1.12",
       "@babel/runtime-corejs3": "7.26.10",
       "@babel/runtime": "7.26.10",
-      "@babel/helpers": "7.26.10"
+      "@babel/helpers": "7.26.10",
+      "base-x": "3.0.11"
     }
   }
 }

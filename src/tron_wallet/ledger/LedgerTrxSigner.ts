@@ -1,5 +1,5 @@
 // @ts-ignore
-import TronWeb from 'tronweb';
+import { TronWeb, utils as TronWebUtils } from 'tronweb';
 
 import { InvalidParameterError, SignError } from '../../base_wallet/error';
 import { LedgerSigner } from '../../base_wallet/ledger/LedgerSigner';
@@ -189,7 +189,7 @@ export class LedgerTrxSigner extends LedgerSigner {
     try {
       const { data, path } = params;
       const ledgerWebHid = new LedgerTrxWebHid();
-      const TypedDataEncoder = TronWeb.utils._TypedDataEncoder;
+      const TypedDataEncoder = TronWebUtils._TypedDataEncoder;
       const messageDigest = TypedDataEncoder.hash(data.domain, data.types, data.message).replace(
         '0x',
         '',
