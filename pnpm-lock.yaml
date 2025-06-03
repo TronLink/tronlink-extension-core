@@ -18,6 +18,8 @@ overrides:
   '@babel/runtime': 7.26.10
   '@babel/helpers': 7.26.10
   base-x: 3.0.11
+  '@ledgerhq/hw-transport': 6.30.1
+  '@ledgerhq/devices': 8.2.1
 
 specifiers:
   '@babel/core': 7.23.7
@@ -32,11 +34,12 @@ specifiers:
   '@ethereumjs/common': 3.1.2
   '@ethereumjs/tx': 4.1.2
   '@ethereumjs/util': 8.0.3
-  '@ledgerhq/hw-app-eth': 6.33.7
-  '@ledgerhq/hw-app-trx': 6.28.1
+  '@ledgerhq/hw-app-eth': 6.45.4
+  '@ledgerhq/hw-app-trx': 6.31.0
   '@ledgerhq/hw-transport': 6.30.1
-  '@ledgerhq/hw-transport-webhid': 6.28.1
-  '@ledgerhq/types-cryptoassets': 7.2.1
+  '@ledgerhq/hw-transport-webhid': 6.30.0
+  '@ledgerhq/types-cryptoassets': 7.23.0
+  '@ledgerhq/types-devices': 6.25.3
   '@types/jest': 29.5.11
   '@types/node': 22.15.17
   '@types/w3c-web-hid': 1.0.6
@@ -76,11 +79,12 @@ dependencies:
   '@ethereumjs/common': 3.1.2
   '@ethereumjs/tx': 4.1.2
   '@ethereumjs/util': 8.0.3
-  '@ledgerhq/hw-app-eth': 6.33.7
-  '@ledgerhq/hw-app-trx': 6.28.1
+  '@ledgerhq/hw-app-eth': 6.45.4
+  '@ledgerhq/hw-app-trx': 6.31.0
   '@ledgerhq/hw-transport': 6.30.1
-  '@ledgerhq/hw-transport-webhid': 6.28.1
-  '@ledgerhq/types-cryptoassets': 7.2.1
+  '@ledgerhq/hw-transport-webhid': 6.30.0
+  '@ledgerhq/types-cryptoassets': 7.23.0
+  '@ledgerhq/types-devices': 6.25.3
   assert: 2.0.0
   bip32: 2.0.6
   bip39: 2.6.0
@@ -2156,27 +2160,30 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@ledgerhq/cryptoassets/9.13.0:
-    resolution: {integrity: sha512-MzGJyc48OGU/FLYGYwEJyfOgbJzlR8XJ9Oo6XpNpNUM1/E5NDqvD72V0D+0uWIJYN3e2NtyqHXShLZDu7P95YA==}
+  /@ledgerhq/cryptoassets-evm-signatures/13.5.6:
+    resolution: {integrity: sha512-BWHu2jhBtspzR2aNcjU4V2mYjc5rqQijXx51EQjmLBJWeV4pEb+CLvyRz6FN12TBUJkpseNmYHof8EcCeNz2yg==}
     dependencies:
-      invariant: 2.2.4
+      '@ledgerhq/live-env': 2.8.0
+      axios: 1.8.2
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /@ledgerhq/devices/8.2.1:
     resolution: {integrity: sha512-l/2I/Xzt7Z32OmGzoc/mUvaZivdn7Id/SO7hBTGpk7PtJTpBRxVAabP4GWEKCayGyOAcvTwoVxM0HMkNVfIzOQ==}
     dependencies:
-      '@ledgerhq/errors': 6.16.2
+      '@ledgerhq/errors': 6.19.1
       '@ledgerhq/logs': 6.12.0
       rxjs: 7.8.1
       semver: 7.7.1
     dev: false
 
-  /@ledgerhq/domain-service/1.1.18:
-    resolution: {integrity: sha512-QZUEvNpuQBa7513S4TvYaaLpUvTerJHV6eXDmWnX3fTmmfrGfFrTYhJbVF5KJ79GCaJfo+Y74zNqGqTwVXgrSA==}
+  /@ledgerhq/domain-service/1.2.29:
+    resolution: {integrity: sha512-A1XER1fcRO4T4/82Z9Eaag2/1yKpBedLkYsHT25/EXNmEJWEIZrmL618fI2zTax5o0c3zXgD84ZDzWYjg0olow==}
     dependencies:
-      '@ledgerhq/errors': 6.16.2
+      '@ledgerhq/errors': 6.19.1
       '@ledgerhq/logs': 6.12.0
-      '@ledgerhq/types-live': 6.45.0
+      '@ledgerhq/types-live': 6.70.0
       axios: 1.8.2
       eip55: 2.1.1
       react: 18.2.0
@@ -2189,43 +2196,64 @@ packages:
     resolution: {integrity: sha512-jFpohaSW+p1Obp3NDT9QSByEtT3gtBZIjVNu8m25gnrH5zdtfPVlPwH6UiuS50s+2dHQyehV8hF+IfreKDWAZA==}
     dev: false
 
-  /@ledgerhq/hw-app-eth/6.33.7:
-    resolution: {integrity: sha512-n9IwUBvW/HHMgSz6BdBeIcHVc+zUp7/RQF8Sbkiv8x3XmQSflAma9DG9pccHa9tIi8GMpxxg0JwZcvic/rSkog==}
+  /@ledgerhq/errors/6.19.1:
+    resolution: {integrity: sha512-75yK7Nnit/Gp7gdrJAz0ipp31CCgncRp+evWt6QawQEtQKYEDfGo10QywgrrBBixeRxwnMy1DP6g2oCWRf1bjw==}
+    dev: false
+
+  /@ledgerhq/evm-tools/1.6.2:
+    resolution: {integrity: sha512-ezdrW7qhu81YhUp5ZHysW+LqJ9SyO1JuY2cCwehJQ6HU7APof5Voglk0CaR+5JMXJX7N6tTZbu72tTAv5OmI2g==}
     dependencies:
-      '@ethersproject/abi': 5.7.0
-      '@ethersproject/rlp': 5.7.0
-      '@ledgerhq/cryptoassets': 9.13.0
-      '@ledgerhq/domain-service': 1.1.18
-      '@ledgerhq/errors': 6.16.2
-      '@ledgerhq/hw-transport': 6.30.1
-      '@ledgerhq/hw-transport-mocker': 6.28.4
-      '@ledgerhq/logs': 6.12.0
+      '@ethersproject/constants': 5.7.0
+      '@ethersproject/hash': 5.7.0
+      '@ledgerhq/cryptoassets-evm-signatures': 13.5.6
+      '@ledgerhq/live-env': 2.8.0
       axios: 1.8.2
-      bignumber.js: 9.1.2
       crypto-js: 4.2.0
     transitivePeerDependencies:
       - debug
     dev: false
 
-  /@ledgerhq/hw-app-trx/6.28.1:
-    resolution: {integrity: sha512-2qIWOAMQWkdwyOA4aynyWO6s1w3XCH12USlUf0mI8D5H+oDq09QJhHvxFxQcUdnGTQJ/LgsSe393hxMPTi6W3w==}
+  /@ledgerhq/hw-app-eth/6.45.4:
+    resolution: {integrity: sha512-fCDterAZd4Kb59fiJI8Ub+4Kt5thL+E3tNquSyhDTW+dWioF5Q6YcNcmRMu4bErRKejN1qCwi6/K9rT2Fhs6/g==}
+    dependencies:
+      '@ethersproject/abi': 5.7.0
+      '@ethersproject/rlp': 5.7.0
+      '@ethersproject/transactions': 5.7.0
+      '@ledgerhq/cryptoassets-evm-signatures': 13.5.6
+      '@ledgerhq/domain-service': 1.2.29
+      '@ledgerhq/errors': 6.19.1
+      '@ledgerhq/evm-tools': 1.6.2
+      '@ledgerhq/hw-transport': 6.30.1
+      '@ledgerhq/hw-transport-mocker': 6.29.4
+      '@ledgerhq/logs': 6.12.0
+      '@ledgerhq/types-live': 6.70.0
+      axios: 1.8.2
+      bignumber.js: 9.1.2
+      jest-sonar: 0.2.16
+      semver: 7.6.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@ledgerhq/hw-app-trx/6.31.0:
+    resolution: {integrity: sha512-djCSbFUwBlDpu6If87x59wzcB+sXJZYelDVQiqSb/v9QMUt0n8XEN66ZM1unmQeYpr9QJk2Cqq7E2XcNngbaQg==}
     dependencies:
       '@ledgerhq/hw-transport': 6.30.1
     dev: false
 
-  /@ledgerhq/hw-transport-mocker/6.28.4:
-    resolution: {integrity: sha512-s4GyN8AdjenO+Y6XsxQyW1bQlbsBwNZJyax4Jz2tf+AbiDC3geblaK3wAg6FTUX0tz5K0mAarEVvM03Qxdxblw==}
+  /@ledgerhq/hw-transport-mocker/6.29.4:
+    resolution: {integrity: sha512-CLDIpQ/eqU8qrCYGY9MyHa+oMgqs6PuNkWtqbcaS4AzNx8L/9bv7y8CZwCjxX6oB/2ZEq42RlL6oZ6Ou3oHnoQ==}
     dependencies:
-      '@ledgerhq/hw-transport': 6.30.4
+      '@ledgerhq/hw-transport': 6.30.1
       '@ledgerhq/logs': 6.12.0
       rxjs: 7.8.1
     dev: false
 
-  /@ledgerhq/hw-transport-webhid/6.28.1:
-    resolution: {integrity: sha512-m1FzUaaRdMm+KWz+sm4RGjG1axAIYEnIC3PqwFGMtXDjyPVohdWxRJD9B2L/etR4EY67b7AH/MoQ02rpUqCCEA==}
+  /@ledgerhq/hw-transport-webhid/6.30.0:
+    resolution: {integrity: sha512-HoTzjmYwO7+TVwK+GNbglRepUoDywBL6vjhKnhGqJSUPqAqJJyEXcnKnFDBMN7Phqm55O+YHDYfpcHGBNg5XlQ==}
     dependencies:
       '@ledgerhq/devices': 8.2.1
-      '@ledgerhq/errors': 6.16.2
+      '@ledgerhq/errors': 6.19.1
       '@ledgerhq/hw-transport': 6.30.1
       '@ledgerhq/logs': 6.12.0
     dev: false
@@ -2239,25 +2267,27 @@ packages:
       events: 3.3.0
     dev: false
 
-  /@ledgerhq/hw-transport/6.30.4:
-    resolution: {integrity: sha512-VBcVd7UG8HDrjWMoZI5rqBDz+PBxLHTIPZOGY/fdMoEUwaBbss0Z3MxuJanMyerlfaLqnBSVuL0blz7rOyagkw==}
+  /@ledgerhq/live-env/2.8.0:
+    resolution: {integrity: sha512-Zk93FDXLtwI4nY99ulLOXAiYa+hdPOV5IpAXm1XCW/q5H3JauzlT8Xr2RJqD/W2+oAjJCpr8tbYtamoCDwVV+A==}
     dependencies:
-      '@ledgerhq/devices': 8.2.1
-      '@ledgerhq/errors': 6.16.2
-      '@ledgerhq/logs': 6.12.0
-      events: 3.3.0
+      rxjs: 7.8.1
+      utility-types: 3.11.0
     dev: false
 
   /@ledgerhq/logs/6.12.0:
     resolution: {integrity: sha512-ExDoj1QV5eC6TEbMdLUMMk9cfvNKhhv5gXol4SmULRVCx/3iyCPhJ74nsb3S0Vb+/f+XujBEj3vQn5+cwS0fNA==}
     dev: false
 
-  /@ledgerhq/types-cryptoassets/7.2.1:
-    resolution: {integrity: sha512-oB2De/pkmCe1dpWyjGgUw7kIfvMpQGM7RzIR2SFjcRN+4ODEPag5ev4Sz2bkMxyCE7rlCkHMxYDDIO4g+o2Aww==}
+  /@ledgerhq/types-cryptoassets/7.23.0:
+    resolution: {integrity: sha512-L7r+YCqqnvVP2mPh7oOJbRR8f0HZz+5/YAsDtg62blsm92HZ8wxyzBAyMaumI0+UwnpXVz91ed58hMIHcgiPgA==}
     dev: false
 
-  /@ledgerhq/types-live/6.45.0:
-    resolution: {integrity: sha512-UKcPVtI53wVOGOrcVkHwPMTNo0ajULlxs4dUmmair2al/yBFi4kosKGPw4i2T43J9rbGnKA+KVuS5G4b0dueXA==}
+  /@ledgerhq/types-devices/6.25.3:
+    resolution: {integrity: sha512-AUThbVlRugs9sVJGbwQuZGXr0ZKDClQySFERhqCyeHKQAdO9TJ9pKFth/9wKKAo5i7fYRC9sx0P5CvPqOwLqIw==}
+    dev: false
+
+  /@ledgerhq/types-live/6.70.0:
+    resolution: {integrity: sha512-xJ9VKf5AQpROIhM2Tm8U4/5V50u6PZhvv9zVkemZvJPw7eqzW3VUq5wLEN6TJWN4JII3D5YDc75x8ws5w9ma1A==}
     dependencies:
       bignumber.js: 9.1.2
       rxjs: 7.8.1
@@ -2336,6 +2366,10 @@ packages:
     dev: true
     optional: true
 
+  /@scure/base/1.1.5:
+    resolution: {integrity: sha512-Brj9FiG2W1MRQSTB212YVPRrcbjkv48FoZi/u4l/zds/ieRrqsh7aUf6CLwkAq61oKXr/ZlTzlY66gLIj3TFTQ==}
+    dev: false
+
   /@scure/base/1.1.9:
     resolution: {integrity: sha512-8YKhl8GHiNI/pU2VMaofa2Tor7PJRAjwQLBBuilkJ9L5+13yVbC7JO/wS7piioAvPSwR3JKM1IJ/u4xQzbcXKg==}
     dev: false
@@ -2345,7 +2379,7 @@ packages:
     dependencies:
       '@noble/hashes': 1.1.2
       '@noble/secp256k1': 1.6.3
-      '@scure/base': 1.1.9
+      '@scure/base': 1.1.5
     dev: false
 
   /@scure/bip32/1.3.3:
@@ -2368,7 +2402,7 @@ packages:
     resolution: {integrity: sha512-pwrPOS16VeTKg98dYXQyIjJEcWfz7/1YJIwxUEPFfQPtc86Ym/1sVgQ2RLoD43AazMk2l/unK4ITySSpW2+82w==}
     dependencies:
       '@noble/hashes': 1.1.2
-      '@scure/base': 1.1.9
+      '@scure/base': 1.1.5
     dev: false
 
   /@scure/bip39/1.2.2:
@@ -2874,7 +2908,6 @@ packages:
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
-    dev: true
 
   /ansi-regex/6.0.1:
     resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
@@ -3901,6 +3934,11 @@ packages:
       tapable: 2.2.1
     dev: true
 
+  /entities/4.3.0:
+    resolution: {integrity: sha512-/iP1rZrSEJ0DTlPiX+jbzlA3eVkY/e8L8SozroF395fIqE3TYF/Nz7YOMAawta+vLmyJ/hkGNNPcSbMADCCXbg==}
+    engines: {node: '>=0.12'}
+    dev: false
+
   /envinfo/7.11.1:
     resolution: {integrity: sha512-8PiZgZNIB4q/Lw4AhOvAfB/ityHAd2bli3lESSWmWSzSsl5dKpy5N1d1Rfkd2teq/g9xN90lc6o98DOjMeYHpg==}
     engines: {node: '>=4'}
@@ -4687,12 +4725,6 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
-  /invariant/2.2.4:
-    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
-    dependencies:
-      loose-envify: 1.4.0
-    dev: false
-
   /ipaddr.js/1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
@@ -5258,6 +5290,13 @@ packages:
       - supports-color
     dev: true
 
+  /jest-sonar/0.2.16:
+    resolution: {integrity: sha512-ES6Z9BbIVDELtbz+/b6pv41B2qOfp38cQpoCLqei21FtlkG/GzhyQ0M3egEIM+erpJOkpRKM8Tc8/YQtHdiTXA==}
+    dependencies:
+      entities: 4.3.0
+      strip-ansi: 6.0.1
+    dev: false
+
   /jest-util/29.7.0:
     resolution: {integrity: sha512-z6EbKajIpqGKU56y5KBUgy1dt1ihhQJgWzUlZHArA/+X2ad7Cb5iF+AK1EWVL/Bo7Rz9uurpqw6SiBCefUbCGA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -5468,7 +5507,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
-    dev: true
 
   /make-dir/3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
@@ -6292,7 +6330,6 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-    dev: true
 
   /semver/7.7.1:
     resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
@@ -6567,7 +6604,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       ansi-regex: 5.0.1
-    dev: true
 
   /strip-ansi/7.1.0:
     resolution: {integrity: sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==}
@@ -6903,6 +6939,11 @@ packages:
       which-typed-array: 1.1.14
     dev: false
 
+  /utility-types/3.11.0:
+    resolution: {integrity: sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==}
+    engines: {node: '>= 4'}
+    dev: false
+
   /utils-merge/1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
@@ -7226,7 +7267,6 @@ packages:
 
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
-    dev: true
 
   /yargs-parser/21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
