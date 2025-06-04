@@ -103,7 +103,8 @@
       "@babel/runtime": "7.26.10",
       "@babel/helpers": "7.26.10",
       "base-x": "3.0.11",
-      "@ledgerhq/hw-transport": "6.30.1"
+      "@ledgerhq/hw-transport": "6.30.1",
+      "@ledgerhq/devices": "8.2.1"
     }
   }
 }
