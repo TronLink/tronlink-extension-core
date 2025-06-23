@@ -1,6 +1,6 @@
 {
   "name": "@tronlink/core",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "The library serves as a core module within TronLink Extension, which provides low-level wallet functionality for both Tron and Ethereum networks, primary features includes account generation and transaction signing",
   "repository": {
     "type": "git",
@@ -34,11 +34,12 @@
     "@ethereumjs/common": "3.1.2",
     "@ethereumjs/tx": "4.1.2",
     "@ethereumjs/util": "8.0.3",
-    "@ledgerhq/hw-app-eth": "6.33.7",
-    "@ledgerhq/hw-app-trx": "6.28.1",
+    "@ledgerhq/hw-app-eth": "6.45.4",
+    "@ledgerhq/hw-app-trx": "6.31.0",
     "@ledgerhq/hw-transport": "6.30.1",
-    "@ledgerhq/hw-transport-webhid": "6.28.1",
-    "@ledgerhq/types-cryptoassets": "7.2.1",
+    "@ledgerhq/hw-transport-webhid": "6.30.0",
+    "@ledgerhq/types-cryptoassets": "7.23.0",
+    "@ledgerhq/types-devices": "6.25.3",
     "assert": "2.0.0",
     "bip32": "2.0.6",
     "bip39": "2.6.0",
@@ -101,7 +102,9 @@
       "@babel/runtime-corejs3": "7.26.10",
       "@babel/runtime": "7.26.10",
       "@babel/helpers": "7.26.10",
-      "base-x": "3.0.11"
+      "base-x": "3.0.11",
+      "@ledgerhq/hw-transport": "6.30.1",
+      "@ledgerhq/devices": "8.2.1"
     }
   }
 }
