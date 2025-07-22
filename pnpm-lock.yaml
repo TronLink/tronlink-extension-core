@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   braces: 3.0.3
-  axios: 1.8.2
+  axios: 1.10.0
   elliptic: 6.6.1
   ethers@6.11.1>ws: 8.17.1
   '@ethersproject/providers@5.7.2>ws': 7.5.10
@@ -22,6 +22,7 @@ overrides:
   '@ledgerhq/devices': 8.2.1
   pbkdf2: 3.1.3
   tiny-secp256k1: 1.1.7
+  form-data: 4.0.4
 
 specifiers:
   '@babel/core': 7.23.7
@@ -2166,7 +2167,7 @@ packages:
     resolution: {integrity: sha512-BWHu2jhBtspzR2aNcjU4V2mYjc5rqQijXx51EQjmLBJWeV4pEb+CLvyRz6FN12TBUJkpseNmYHof8EcCeNz2yg==}
     dependencies:
       '@ledgerhq/live-env': 2.8.0
-      axios: 1.8.2
+      axios: 1.10.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -2186,7 +2187,7 @@ packages:
       '@ledgerhq/errors': 6.19.1
       '@ledgerhq/logs': 6.12.0
       '@ledgerhq/types-live': 6.70.0
-      axios: 1.8.2
+      axios: 1.10.0
       eip55: 2.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2209,7 +2210,7 @@ packages:
       '@ethersproject/hash': 5.7.0
       '@ledgerhq/cryptoassets-evm-signatures': 13.5.6
       '@ledgerhq/live-env': 2.8.0
-      axios: 1.8.2
+      axios: 1.10.0
       crypto-js: 4.2.0
     transitivePeerDependencies:
       - debug
@@ -2229,7 +2230,7 @@ packages:
       '@ledgerhq/hw-transport-mocker': 6.29.4
       '@ledgerhq/logs': 6.12.0
       '@ledgerhq/types-live': 6.70.0
-      axios: 1.8.2
+      axios: 1.10.0
       bignumber.js: 9.1.2
       jest-sonar: 0.2.16
       semver: 7.6.0
@@ -3008,11 +3009,11 @@ packages:
       possible-typed-array-names: 1.0.0
     dev: false
 
-  /axios/1.8.2:
-    resolution: {integrity: sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==}
+  /axios/1.10.0:
+    resolution: {integrity: sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==}
     dependencies:
       follow-redirects: 1.15.6
-      form-data: 4.0.0
+      form-data: 4.0.4
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -4023,6 +4024,16 @@ packages:
       es-errors: 1.3.0
     dev: false
 
+  /es-set-tostringtag/2.1.0:
+    resolution: {integrity: sha512-j6vWzfrGVfyXxge+O0x5sh6cvxAog0a/4Rdd2K36zCMV5eJ+/+tOAngRO8cODMNWbVRdVlmGZQL2YS3yR8bIUA==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      es-errors: 1.3.0
+      get-intrinsic: 1.3.0
+      has-tostringtag: 1.0.2
+      hasown: 2.0.2
+    dev: false
+
   /es6-object-assign/1.1.0:
     resolution: {integrity: sha512-MEl9uirslVwqQU369iHNWZXsI8yaZYGg/D65aOgZkeyFJwHYSxilf7rQzXKI7DdDuBPrBXbfk3sl9hJhmd5AUw==}
     dev: false
@@ -4442,12 +4453,14 @@ packages:
       signal-exit: 4.1.0
     dev: true
 
-  /form-data/4.0.0:
-    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
+  /form-data/4.0.4:
+    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
     engines: {node: '>= 6'}
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
+      es-set-tostringtag: 2.1.0
+      hasown: 2.0.2
       mime-types: 2.1.35
     dev: false
 
@@ -6931,7 +6944,7 @@ packages:
     resolution: {integrity: sha512-5FKHuGiSqleQ2ASxio7h9URsJ5w8nCjfI0hZawTWefbgeVM1r0sZ7qfGMWl3xjKTLvILrnocwB97TQYBnL0Faw==}
     dependencies:
       '@babel/runtime': 7.26.10
-      axios: 1.8.2
+      axios: 1.10.0
       bignumber.js: 9.1.2
       ethereum-cryptography: 2.2.1
       ethers: 6.13.5
