@@ -68,7 +68,7 @@ specifiers:
   stream-browserify: 3.0.0
   stream-http: 3.2.0
   terser-webpack-plugin: 5.3.7
-  tronweb: 6.0.3
+  tronweb: 6.0.4
   ts-jest: 29.1.1
   typescript: 5.8.3
   url: 0.11.0
@@ -103,7 +103,7 @@ dependencies:
   querystring-es3: 0.2.1
   stream-browserify: 3.0.0
   stream-http: 3.2.0
-  tronweb: 6.0.3
+  tronweb: 6.0.4
   url: 0.11.0
   util: 0.12.5
 
@@ -6945,8 +6945,8 @@ packages:
     engines: {node: '>=0.6'}
     dev: true
 
-  /tronweb/6.0.3:
-    resolution: {integrity: sha512-5FKHuGiSqleQ2ASxio7h9URsJ5w8nCjfI0hZawTWefbgeVM1r0sZ7qfGMWl3xjKTLvILrnocwB97TQYBnL0Faw==}
+  /tronweb/6.0.4:
+    resolution: {integrity: sha512-+9Nc7H4FYVh2DcOnQG93WLm3UdlHSf9W+GXkfrXI77oLjTB1cptROJDKRSSxQBiOAyjjAJOOTuYDzlAkaLT85w==}
     dependencies:
       '@babel/runtime': 7.26.10
       axios: 1.10.0
