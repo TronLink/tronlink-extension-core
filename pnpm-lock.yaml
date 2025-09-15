@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   braces: 3.0.3
-  axios: 1.10.0
+  axios: 1.12.2
   elliptic: 6.6.1
   ethers@6.11.1>ws: 8.17.1
   '@ethersproject/providers@5.7.2>ws': 7.5.10
@@ -2169,7 +2169,7 @@ packages:
     resolution: {integrity: sha512-BWHu2jhBtspzR2aNcjU4V2mYjc5rqQijXx51EQjmLBJWeV4pEb+CLvyRz6FN12TBUJkpseNmYHof8EcCeNz2yg==}
     dependencies:
       '@ledgerhq/live-env': 2.8.0
-      axios: 1.10.0
+      axios: 1.12.2
     transitivePeerDependencies:
       - debug
     dev: false
@@ -2189,7 +2189,7 @@ packages:
       '@ledgerhq/errors': 6.19.1
       '@ledgerhq/logs': 6.12.0
       '@ledgerhq/types-live': 6.70.0
-      axios: 1.10.0
+      axios: 1.12.2
       eip55: 2.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2212,7 +2212,7 @@ packages:
       '@ethersproject/hash': 5.7.0
       '@ledgerhq/cryptoassets-evm-signatures': 13.5.6
       '@ledgerhq/live-env': 2.8.0
-      axios: 1.10.0
+      axios: 1.12.2
       crypto-js: 4.2.0
     transitivePeerDependencies:
       - debug
@@ -2232,7 +2232,7 @@ packages:
       '@ledgerhq/hw-transport-mocker': 6.29.4
       '@ledgerhq/logs': 6.12.0
       '@ledgerhq/types-live': 6.70.0
-      axios: 1.10.0
+      axios: 1.12.2
       bignumber.js: 9.1.2
       jest-sonar: 0.2.16
       semver: 7.6.0
@@ -3011,8 +3011,8 @@ packages:
       possible-typed-array-names: 1.0.0
     dev: false
 
-  /axios/1.10.0:
-    resolution: {integrity: sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==}
+  /axios/1.12.2:
+    resolution: {integrity: sha512-vMJzPewAlRyOgxV2dU0Cuz2O8zzzx9VYtbJOaBgXFeLc4IV/Eg50n4LowmehOOR61S8ZMpc2K5Sa7g6A4jfkUw==}
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.4
@@ -6949,7 +6949,7 @@ packages:
     resolution: {integrity: sha512-+9Nc7H4FYVh2DcOnQG93WLm3UdlHSf9W+GXkfrXI77oLjTB1cptROJDKRSSxQBiOAyjjAJOOTuYDzlAkaLT85w==}
     dependencies:
       '@babel/runtime': 7.26.10
-      axios: 1.10.0
+      axios: 1.12.2
       bignumber.js: 9.1.2
       ethereum-cryptography: 2.2.1
       ethers: 6.13.5
