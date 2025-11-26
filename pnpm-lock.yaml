@@ -69,7 +69,7 @@ specifiers:
   stream-browserify: 3.0.0
   stream-http: 3.2.0
   terser-webpack-plugin: 5.3.7
-  tronweb: 6.0.4
+  tronweb: 6.1.0
   ts-jest: 29.1.1
   typescript: 5.8.3
   url: 0.11.0
@@ -104,7 +104,7 @@ dependencies:
   querystring-es3: 0.2.1
   stream-browserify: 3.0.0
   stream-http: 3.2.0
-  tronweb: 6.0.4
+  tronweb: 6.1.0
   url: 0.11.0
   util: 0.12.5
 
@@ -6949,8 +6949,8 @@ packages:
     engines: {node: '>=0.6'}
     dev: true
 
-  /tronweb/6.0.4:
-    resolution: {integrity: sha512-+9Nc7H4FYVh2DcOnQG93WLm3UdlHSf9W+GXkfrXI77oLjTB1cptROJDKRSSxQBiOAyjjAJOOTuYDzlAkaLT85w==}
+  /tronweb/6.1.0:
+    resolution: {integrity: sha512-ANEr2YneA2frXTpsxDR21yk2cJLIvOdPe7dg7gu96TyqfVbS9eCrguNuN+qCUZOC/zW3n6R880bBDbEWKZiWzA==}
     dependencies:
       '@babel/runtime': 7.26.10
       axios: 1.12.2
@@ -6960,7 +6960,7 @@ packages:
       eventemitter3: 5.0.1
       google-protobuf: 3.21.4
       semver: 7.7.1
-      validator: 13.12.0
+      validator: 13.15.20
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -7151,8 +7151,8 @@ packages:
       convert-source-map: 2.0.0
     dev: true
 
-  /validator/13.12.0:
-    resolution: {integrity: sha512-c1Q0mCiPlgdTVVVIJIrBuxNicYE+t/7oKeI9MWLj3fh/uq2Pxh/3eeWbVZ4OcGW1TUf53At0njHw5SMdA3tmMg==}
+  /validator/13.15.20:
+    resolution: {integrity: sha512-KxPOq3V2LmfQPP4eqf3Mq/zrT0Dqp2Vmx2Bn285LwVahLc+CsxOM0crBHczm8ijlcjZ0Q5Xd6LW3z3odTPnlrw==}
     engines: {node: '>= 0.10'}
     dev: false
 
