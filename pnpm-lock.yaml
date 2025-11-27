@@ -26,6 +26,7 @@ overrides:
   sha.js: 2.4.12
   cipher-base: 1.0.5
   rimraf@5.0.5>glob: 11.1.0
+  node-forge: 1.3.2
 
 specifiers:
   '@babel/core': 7.23.7
@@ -69,7 +70,7 @@ specifiers:
   stream-browserify: 3.0.0
   stream-http: 3.2.0
   terser-webpack-plugin: 5.3.7
-  tronweb: 6.0.4
+  tronweb: 6.1.0
   ts-jest: 29.1.1
   typescript: 5.8.3
   url: 0.11.0
@@ -104,7 +105,7 @@ dependencies:
   querystring-es3: 0.2.1
   stream-browserify: 3.0.0
   stream-http: 3.2.0
-  tronweb: 6.0.4
+  tronweb: 6.1.0
   url: 0.11.0
   util: 0.12.5
 
@@ -5825,8 +5826,8 @@ packages:
     resolution: {integrity: sha512-eh0GgfEkpnoWDq+VY8OyvYhFEzBk6jIYbRKdIlyTiAXIVJ8PyBaKb0rp7oDtoddbdoHWhq8wwr+XZ81F1rpNdA==}
     dev: false
 
-  /node-forge/1.3.1:
-    resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
+  /node-forge/1.3.2:
+    resolution: {integrity: sha512-6xKiQ+cph9KImrRh0VsjH2d8/GXA4FIMlgU4B757iI1ApvcyA9VlouP0yZJha01V+huImO+kKMU7ih+2+E14fw==}
     engines: {node: '>= 6.13.0'}
     dev: true
 
@@ -6472,7 +6473,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       '@types/node-forge': 1.3.11
-      node-forge: 1.3.1
+      node-forge: 1.3.2
     dev: true
 
   /semver/6.3.1:
@@ -6949,8 +6950,8 @@ packages:
     engines: {node: '>=0.6'}
     dev: true
 
-  /tronweb/6.0.4:
-    resolution: {integrity: sha512-+9Nc7H4FYVh2DcOnQG93WLm3UdlHSf9W+GXkfrXI77oLjTB1cptROJDKRSSxQBiOAyjjAJOOTuYDzlAkaLT85w==}
+  /tronweb/6.1.0:
+    resolution: {integrity: sha512-ANEr2YneA2frXTpsxDR21yk2cJLIvOdPe7dg7gu96TyqfVbS9eCrguNuN+qCUZOC/zW3n6R880bBDbEWKZiWzA==}
     dependencies:
       '@babel/runtime': 7.26.10
       axios: 1.12.2
@@ -6960,7 +6961,7 @@ packages:
       eventemitter3: 5.0.1
       google-protobuf: 3.21.4
       semver: 7.7.1
-      validator: 13.12.0
+      validator: 13.15.20
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -7151,8 +7152,8 @@ packages:
       convert-source-map: 2.0.0
     dev: true
 
-  /validator/13.12.0:
-    resolution: {integrity: sha512-c1Q0mCiPlgdTVVVIJIrBuxNicYE+t/7oKeI9MWLj3fh/uq2Pxh/3eeWbVZ4OcGW1TUf53At0njHw5SMdA3tmMg==}
+  /validator/13.15.20:
+    resolution: {integrity: sha512-KxPOq3V2LmfQPP4eqf3Mq/zrT0Dqp2Vmx2Bn285LwVahLc+CsxOM0crBHczm8ijlcjZ0Q5Xd6LW3z3odTPnlrw==}
     engines: {node: '>= 0.10'}
     dev: false
 
