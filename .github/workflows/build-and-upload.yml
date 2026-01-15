@@ -59,10 +59,18 @@ jobs:
           ZIP_NAME="build_${GIT_TAG:-$GIT_HASH}.zip"
           zip -r "$ZIP_NAME" ./dist
 
+      - name: Create tar.gz build folder
+        run: |
+          TAR_NAME="build_${GIT_TAG:-$GIT_HASH}.tar.gz"
+          tar -czf "$TAR_NAME" ./dist
+
       - name: Upload to S3
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
         run: |
           ZIP_NAME="build_${GIT_TAG:-$GIT_HASH}.zip"
+          TAR_NAME="build_${GIT_TAG:-$GIT_HASH}.tar.gz"
           echo "ZIP_NAME is $ZIP_NAME"
+          echo "TAR_NAME is $TAR_NAME"
           aws s3 cp "$ZIP_NAME" "s3://$S3_BUCKET/tronlink-extension-core/"
+          aws s3 cp "$TAR_NAME" "s3://$S3_BUCKET/tronlink-extension-core/"
