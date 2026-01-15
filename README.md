@@ -96,6 +96,14 @@ pnpm build
 - [Node.js](https://nodejs.org/)
 - [TronLink Extension Core](https://github.com/TronLink/tronLink-extension-core)
 
+## Integrity Check
+The package files will be signed using a GPG key pair, and the correctness of the signature will be verified using the following public key:
+
+  ```
+  pub: 7B910EA80207596075E6D7BA5D34F7A6550473BA
+  uid: build_tronlink <build@tronlink.org>
+  ```
+
 
 ## License
 
