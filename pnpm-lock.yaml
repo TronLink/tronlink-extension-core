@@ -52,6 +52,7 @@ specifiers:
   '@types/w3c-web-hid': 1.0.6
   assert: 2.0.0
   babel-loader: 8.3.0
+  bignumber.js: 9.1.1
   bip32: 2.0.6
   bip39: 2.6.0
   browserify-zlib: 0.2.0
@@ -93,6 +94,7 @@ dependencies:
   '@ledgerhq/types-cryptoassets': 7.23.0
   '@ledgerhq/types-devices': 6.25.3
   assert: 2.0.0
+  bignumber.js: 9.1.1
   bip32: 2.0.6
   bip39: 2.6.0
   browserify-zlib: 0.2.0
@@ -3167,6 +3169,10 @@ packages:
   /big.js/5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
     dev: true
+
+  /bignumber.js/9.1.1:
+    resolution: {integrity: sha512-pHm4LsMJ6lzgNGVfZHjMoO8sdoRhOzOH4MLmY65Jg70bpxCKu5iOHNJyfF6OyvYw7t8Fpf35RuzUyqnQsj8Vig==}
+    dev: false
 
   /bignumber.js/9.1.2:
     resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
