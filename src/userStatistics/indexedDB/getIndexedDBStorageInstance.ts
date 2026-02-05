@@ -63,6 +63,7 @@ export function initAnalyticsIndexedDBStorage() {
     AnalyticsIndexedDBStorage.init();
   } catch (error) {
     // handle error
+    throw error;
   }
 }
 

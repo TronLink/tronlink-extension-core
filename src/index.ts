@@ -13,3 +13,8 @@ export {
 } from './tron_wallet';
 
 export { httpProxy } from './utils';
+
+export {
+  getIndexedDBStorageInstance,
+  initAnalyticsIndexedDBStorage,
+} from './userStatistics/indexedDB';
