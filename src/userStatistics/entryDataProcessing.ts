@@ -1,4 +1,3 @@
-// This file is for processing data input function getAndUpdateTransactionRecord
 import { BigNumber } from 'bignumber.js';
 import { TokenType } from './constants';
 
