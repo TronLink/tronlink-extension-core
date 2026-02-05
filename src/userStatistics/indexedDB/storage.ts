@@ -1,10 +1,10 @@
-import { storeConfig, storeList } from './config';
+import { STORE_NAME, storeConfig, storeList } from './config';
 
 type KeyType = string | number;
 
 interface IndexedDBStorageState {
   mode?: IDBTransactionMode;
-  dbName?: string;
+  dbName: string;
   dbVersion: number;
   storeName: string;
 }
@@ -29,7 +29,7 @@ export class IndexedDBStorage {
     this.getObjectStore();
   }
 
-  private createStore(db: IDBDatabase, storeName: string) {
+  private createStore(db: IDBDatabase, storeName: STORE_NAME) {
     const { keyPath, autoIncrement, indexList } = storeConfig[storeName];
     const store = db.createObjectStore(storeName, {
       keyPath,
@@ -62,7 +62,7 @@ export class IndexedDBStorage {
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
 
-        storeList.forEach((storeName: string) => {
+        storeList.forEach((storeName: STORE_NAME) => {
           if (!db.objectStoreNames.contains(storeName)) {
             this.createStore(db, storeName);
           }
@@ -161,6 +161,7 @@ export class IndexedDBStorage {
           const results: any[] = [];
 
           request.onsuccess = (e) => {
+            // @ts-ignore
             const cursor = e.target.result;
             if (cursor) {
               results.push(cursor.value);
@@ -213,7 +214,7 @@ export class IndexedDBStorage {
             let request;
 
             if (!objectStore.keyPath) {
-              request = objectStore.put(value, key[index]);
+              request = objectStore.put(value, key![index]);
             } else {
               request = objectStore.put(value);
             }
