@@ -18,3 +18,6 @@ export {
   getIndexedDBStorageInstance,
   initAnalyticsIndexedDBStorage,
 } from './userStatistics/indexedDB';
+
+// User statistics module
+export * from './userStatistics';
