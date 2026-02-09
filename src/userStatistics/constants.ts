@@ -8,7 +8,7 @@ export enum TokenType {
   TRX = 0,
   TRC10 = 1,
   TRC20 = 2,
-  TRC721 = 3,
+  TRC721 = 5,
 }
 
 export enum ContractType {
