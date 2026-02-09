@@ -1,7 +1,16 @@
-export { getAndUpdateAddressAssetPrecipitation, getAndUpdateTransactionRecord } from './userStatistics';
+export {
+  getAndUpdateAddressAssetPrecipitation,
+  getAndUpdateTransactionRecord,
+} from './userStatistics';
 export { checkAndReportXY } from './report';
 
-export type { ExternalDependencies, SystemConfig, BalanceInfo, SendStatisticsParams, SendStatisticsResult } from './ExternalDeps';
+export type {
+  ExternalDependencies,
+  SystemConfig,
+  BalanceInfo,
+  SendStatisticsParams,
+  SendStatisticsResult,
+} from './ExternalDeps';
 
 export type {
   TransferCostInfo,
@@ -12,12 +21,7 @@ export type {
   TransactionRawData,
 } from './types';
 
-export {
-  InitiatorType,
-  DelegateType,
-  FunctionName,
-  UserStatisticsActionType,
-} from './types';
+export { InitiatorType, DelegateType, FunctionName, UserStatisticsActionType } from './types';
 
 export {
   TokenType,
@@ -28,4 +32,13 @@ export {
   contractTypeNumMapString,
 } from './constants';
 
-export { completeDappTransactionTokenInfo, getDappTransactionTokenAmount } from './entryDataProcessing';
+export {
+  completeDappTransactionTokenInfo,
+  getDappTransactionTokenAmount,
+} from './entryDataProcessing';
+
+export {
+  getIndexedDBStorageInstance,
+  initAnalyticsIndexedDBStorage,
+  STORE_NAME,
+} from './indexedDB';
