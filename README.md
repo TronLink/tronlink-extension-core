@@ -3,8 +3,7 @@
 This project is a TypeScript and JavaScript-based module that utilizes the Node.js runtime environment and npm as a package manager. 
 
 The library serves as a core module within TronLink Extension,  which provides low-level wallet functionality for both Tron and Ethereum networks, primary features includes account generation and transaction signing.
-
-Additionally, the library includes a UserStatistics module that enables tracking and reporting of user asset precipitation and transaction records. This module does not report the user's real address.
+A lightweight analytics component is bundled to support internal product insights. This component is strictly non-identifying — it neither accesses nor transmits any data that could be linked to an individual user, wallet address, or on-chain activity.
 
 ## Getting Started
 
@@ -31,7 +30,7 @@ pnpm install @tronlink/core
 
 ## Usage
 
-The project includes utility classes for generating accounts and signing transactions for Tron and Ethereum, as well as a UserStatistics module for reporting user asset and transaction data.
+The project includes utility classes for generating accounts and signing transactions for Tron and Ethereum, along with a lightweight analytics module for aggregated, non-identifying usage insights.
 
 
 Please refer to below demo:
