@@ -4,6 +4,8 @@ This project is a TypeScript and JavaScript-based module that utilizes the Node.
 
 The library serves as a core module within TronLink Extension,  which provides low-level wallet functionality for both Tron and Ethereum networks, primary features includes account generation and transaction signing.
 
+Additionally, the library includes a UserStatistics module that enables tracking and reporting of user asset precipitation and transaction records. This module does not report the user's real address.
+
 ## Getting Started
 
 
