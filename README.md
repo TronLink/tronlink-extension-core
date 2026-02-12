@@ -29,7 +29,7 @@ pnpm install @tronlink/core
 
 ## Usage
 
-The project includes utility classes for generating accounts and signing transactions for Tron and Ethereum.
+The project includes utility classes for generating accounts and signing transactions for Tron and Ethereum, as well as a UserStatistics module for reporting user asset and transaction data.
 
 
 Please refer to below demo:
@@ -37,6 +37,7 @@ Please refer to below demo:
 + [Account generation](demo/create_account.ts)
 + [Ethereum transaction & message signing](demo/evm_signature.ts)
 + [Tron transaction & message signing](demo/tron_signature.ts)
++ [UserStatistics implementation](/Volumes/PrivateDisks/code/tronlink-extension-core-fork/demo/user_statistics.ts)
 
 
 ## Running the tests
