@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   braces: 3.0.3
-  axios: 1.12.2
+  axios: 1.13.5
   elliptic: 6.6.1
   ethers@6.11.1>ws: 8.17.1
   '@ethersproject/providers@5.7.2>ws': 7.5.10
@@ -52,6 +52,7 @@ specifiers:
   '@types/w3c-web-hid': 1.0.6
   assert: 2.0.0
   babel-loader: 8.3.0
+  bignumber.js: 9.1.1
   bip32: 2.0.6
   bip39: 2.6.0
   browserify-zlib: 0.2.0
@@ -70,7 +71,7 @@ specifiers:
   stream-browserify: 3.0.0
   stream-http: 3.2.0
   terser-webpack-plugin: 5.3.7
-  tronweb: 6.1.1
+  tronweb: 6.2.0
   ts-jest: 29.1.1
   typescript: 5.8.3
   url: 0.11.0
@@ -93,6 +94,7 @@ dependencies:
   '@ledgerhq/types-cryptoassets': 7.23.0
   '@ledgerhq/types-devices': 6.25.3
   assert: 2.0.0
+  bignumber.js: 9.1.1
   bip32: 2.0.6
   bip39: 2.6.0
   browserify-zlib: 0.2.0
@@ -105,7 +107,7 @@ dependencies:
   querystring-es3: 0.2.1
   stream-browserify: 3.0.0
   stream-http: 3.2.0
-  tronweb: 6.1.1
+  tronweb: 6.2.0
   url: 0.11.0
   util: 0.12.5
 
@@ -2171,7 +2173,7 @@ packages:
     resolution: {integrity: sha512-BWHu2jhBtspzR2aNcjU4V2mYjc5rqQijXx51EQjmLBJWeV4pEb+CLvyRz6FN12TBUJkpseNmYHof8EcCeNz2yg==}
     dependencies:
       '@ledgerhq/live-env': 2.8.0
-      axios: 1.12.2
+      axios: 1.13.5
     transitivePeerDependencies:
       - debug
     dev: false
@@ -2191,7 +2193,7 @@ packages:
       '@ledgerhq/errors': 6.19.1
       '@ledgerhq/logs': 6.12.0
       '@ledgerhq/types-live': 6.70.0
-      axios: 1.12.2
+      axios: 1.13.5
       eip55: 2.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2214,7 +2216,7 @@ packages:
       '@ethersproject/hash': 5.7.0
       '@ledgerhq/cryptoassets-evm-signatures': 13.5.6
       '@ledgerhq/live-env': 2.8.0
-      axios: 1.12.2
+      axios: 1.13.5
       crypto-js: 4.2.0
     transitivePeerDependencies:
       - debug
@@ -2234,7 +2236,7 @@ packages:
       '@ledgerhq/hw-transport-mocker': 6.29.4
       '@ledgerhq/logs': 6.12.0
       '@ledgerhq/types-live': 6.70.0
-      axios: 1.12.2
+      axios: 1.13.5
       bignumber.js: 9.1.2
       jest-sonar: 0.2.16
       semver: 7.6.0
@@ -3009,10 +3011,10 @@ packages:
       possible-typed-array-names: 1.0.0
     dev: false
 
-  /axios/1.12.2:
-    resolution: {integrity: sha512-vMJzPewAlRyOgxV2dU0Cuz2O8zzzx9VYtbJOaBgXFeLc4IV/Eg50n4LowmehOOR61S8ZMpc2K5Sa7g6A4jfkUw==}
+  /axios/1.13.5:
+    resolution: {integrity: sha512-cz4ur7Vb0xS4/KUN0tPWe44eqxrIu31me+fbang3ijiNscE129POzipJJA6zniq2C/Z6sJCjMimjS8Lc/GAs8Q==}
     dependencies:
-      follow-redirects: 1.15.6
+      follow-redirects: 1.15.11
       form-data: 4.0.4
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -3167,6 +3169,10 @@ packages:
   /big.js/5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
     dev: true
+
+  /bignumber.js/9.1.1:
+    resolution: {integrity: sha512-pHm4LsMJ6lzgNGVfZHjMoO8sdoRhOzOH4MLmY65Jg70bpxCKu5iOHNJyfF6OyvYw7t8Fpf35RuzUyqnQsj8Vig==}
+    dev: false
 
   /bignumber.js/9.1.2:
     resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
@@ -4415,8 +4421,8 @@ packages:
       path-exists: 4.0.0
     dev: true
 
-  /follow-redirects/1.15.6:
-    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
+  /follow-redirects/1.15.11:
+    resolution: {integrity: sha512-deG2P0JfjrTxl50XGCDyfI97ZGVCxIpfKYmfyrQ54n5FO/0gfIES8C/Psl6kWVDolizcaaxZJnTS0QSMxvnsBQ==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -4752,7 +4758,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.6
+      follow-redirects: 1.15.11
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -6934,11 +6940,11 @@ packages:
     engines: {node: '>=0.6'}
     dev: true
 
-  /tronweb/6.1.1:
-    resolution: {integrity: sha512-9i2N+cTkRY7Y1B/V0+ZVwCYZFhdFDalh8sbI8Tpj5O65hMURvjFnaP1u/dTwVnVw07d9M143/19KarxeAzK6pg==}
+  /tronweb/6.2.0:
+    resolution: {integrity: sha512-09kyW6mqiFuSYXkR35ndxCeNF5rW1O18hKAClCLtVHP2xBFPYSGx3lDYC2hRKcuLiq6iLPxOVCrhzoKNGlFuQQ==}
     dependencies:
       '@babel/runtime': 7.26.10
-      axios: 1.12.2
+      axios: 1.13.5
       bignumber.js: 9.1.2
       ethereum-cryptography: 2.2.1
       ethers: 6.13.5
