@@ -13,3 +13,6 @@ export {
 } from './tron_wallet';
 
 export { httpProxy } from './utils';
+
+// User statistics module
+export * from './userStatistics';

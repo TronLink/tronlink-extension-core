@@ -38,7 +38,7 @@ export default class axiosFaker {
     const customOps = req.config || {};
     const reqOps = Object.assign({}, this.defaultOps, customOps);
     const { mode } = reqOps;
-    const { method, query, data } = req[0];
+    const { method, params, data } = req[0];
     let url = req[0].url;
     let headers = req.headers;
     if (reqOps.baseURL && !isAbsoluteURL(url)) {
@@ -55,7 +55,7 @@ export default class axiosFaker {
     }
 
     if (method.toUpperCase() === 'GET') {
-      url += '?' + serialize(query);
+      url += '?' + serialize(params);
     }
     headers = Object.assign({}, this.defaultOps.headers, headers || {});
     let body = data;
