@@ -1,3 +1,8 @@
+if (typeof crypto === 'undefined') {
+  const { webcrypto } = require('node:crypto');
+  globalThis.crypto = webcrypto;
+}
+
 const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
