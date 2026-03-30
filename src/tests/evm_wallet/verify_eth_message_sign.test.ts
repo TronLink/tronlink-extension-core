@@ -69,4 +69,18 @@ describe('evm walLet - verifyEthMessageSign', () => {
     const result = wallet.verifyEthMessageSign(resultHash, message, DEFAULT_USER_ADDRESS1);
     expect(result).toBe(true);
   });
+
+  it('accepts expected address without "0x" prefix', async () => {
+    const message = 'testMessage';
+    const resultHash = await wallet.signMessage({
+      privateKey: DEFAULT_PRIVATE_KEY,
+      data: message,
+    });
+    const result = wallet.verifyEthMessageSign(
+      resultHash,
+      message,
+      DEFAULT_USER_ADDRESS1.slice(2),
+    );
+    expect(result).toBe(true);
+  });
 });
