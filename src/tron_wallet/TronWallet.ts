@@ -56,10 +56,7 @@ export class TronWallet extends BaseWallet {
         isSignMessageV2: false,
       };
 
-      if (
-        typeof data === 'string' ||
-        (data && data.constructor && data.constructor.name === 'String')
-      ) {
+      if (typeof data === 'string') {
         if (isSignMessageV2) {
           return this.signMessageV2(params);
         } else {

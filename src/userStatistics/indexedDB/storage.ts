@@ -210,23 +210,23 @@ export class IndexedDBStorage {
     return new Promise((resolve, reject) => {
       this.getObjectStore()
         .then((objectStore: IDBObjectStore) => {
-          values.map((value, index) => {
-            let request;
+          const transaction = objectStore.transaction;
 
+          values.forEach((value, index) => {
             if (!objectStore.keyPath) {
-              request = objectStore.put(value, key![index]);
+              objectStore.put(value, key![index]);
             } else {
-              request = objectStore.put(value);
+              objectStore.put(value);
             }
-
-            request.onsuccess = () => {
-              resolve(true);
-            };
-
-            request.onerror = (event) => {
-              reject(false);
-            };
           });
+
+          transaction.oncomplete = () => {
+            resolve(true);
+          };
+
+          transaction.onerror = () => {
+            reject(false);
+          };
         })
         .catch((error) => {
           reject(false);
@@ -258,17 +258,19 @@ export class IndexedDBStorage {
     return new Promise((resolve, reject) => {
       this.getObjectStore()
         .then((objectStore: IDBObjectStore) => {
-          keys.map((key) => {
-            const request = objectStore.delete(key);
+          const transaction = objectStore.transaction;
 
-            request.onsuccess = () => {
-              resolve(true);
-            };
-
-            request.onerror = (event) => {
-              reject(false);
-            };
+          keys.forEach((key) => {
+            objectStore.delete(key);
           });
+
+          transaction.oncomplete = () => {
+            resolve(true);
+          };
+
+          transaction.onerror = () => {
+            reject(false);
+          };
         })
         .catch((error) => {
           reject(false);
