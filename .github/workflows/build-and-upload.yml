@@ -36,17 +36,11 @@ jobs:
           nvm use 18.19.0
           npm install -g pnpm@7.32.0
           pnpm install
-
-      - name: Build project
-        run: |
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm use 18.19.0
           pnpm run build
 
       - name: Get short commit hash
         id: vars
-        run: echo "GIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+        run: echo "GIT_HASH=$(git rev-parse --short=8 HEAD)" >> $GITHUB_ENV
 
       - name: Get tag (if exists)
         id: tag
@@ -54,23 +48,30 @@ jobs:
           TAG=$(git describe --tags --exact-match 2>/dev/null || echo "")
           echo "GIT_TAG=$TAG" >> $GITHUB_ENV
 
+      - name: Build file name
+        run: |
+          if [ -n "$GIT_TAG" ] && [ -n "$GIT_HASH" ]; then
+            FILE_BASE="tronlink-extension-core_main_${GIT_HASH}_${GIT_TAG}"
+          elif [ -n "$GIT_TAG" ]; then
+            FILE_BASE="tronlink-extension-core_main_${GIT_TAG}"
+          else
+            FILE_BASE="tronlink-extension-core_main_${GIT_HASH}"
+          fi
+          echo "FILE_BASE=$FILE_BASE" >> $GITHUB_ENV
+
       - name: Zip build folder
         run: |
-          ZIP_NAME="build_${GIT_TAG:-$GIT_HASH}.zip"
-          zip -r "$ZIP_NAME" ./dist
+          zip -r "${FILE_BASE}.zip" ./dist
 
       - name: Create tar.gz build folder
         run: |
-          TAR_NAME="build_${GIT_TAG:-$GIT_HASH}.tar.gz"
-          tar -czf "$TAR_NAME" ./dist
+          tar -czf "${FILE_BASE}.tar.gz" ./dist
 
       - name: Upload to S3
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
         run: |
-          ZIP_NAME="build_${GIT_TAG:-$GIT_HASH}.zip"
-          TAR_NAME="build_${GIT_TAG:-$GIT_HASH}.tar.gz"
-          echo "ZIP_NAME is $ZIP_NAME"
-          echo "TAR_NAME is $TAR_NAME"
-          aws s3 cp "$ZIP_NAME" "s3://$S3_BUCKET/tronlink-extension-core/"
-          aws s3 cp "$TAR_NAME" "s3://$S3_BUCKET/tronlink-extension-core/"
+          echo "Uploading ${FILE_BASE}.zip"
+          echo "Uploading ${FILE_BASE}.tar.gz"
+          aws s3 cp "${FILE_BASE}.zip" "s3://$S3_BUCKET/frontend/tronlink-extension-core/"
+          aws s3 cp "${FILE_BASE}.tar.gz" "s3://$S3_BUCKET/frontend/tronlink-extension-core/"
