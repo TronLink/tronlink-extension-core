@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   braces: 3.0.3
-  axios: 1.13.5
+  axios: 1.15.0
   elliptic: 6.6.1
   ethers@6.11.1>ws: 8.17.1
   '@ethersproject/providers@5.7.2>ws': 7.5.10
@@ -2175,7 +2175,7 @@ packages:
     resolution: {integrity: sha512-BWHu2jhBtspzR2aNcjU4V2mYjc5rqQijXx51EQjmLBJWeV4pEb+CLvyRz6FN12TBUJkpseNmYHof8EcCeNz2yg==}
     dependencies:
       '@ledgerhq/live-env': 2.8.0
-      axios: 1.13.5
+      axios: 1.15.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -2195,7 +2195,7 @@ packages:
       '@ledgerhq/errors': 6.19.1
       '@ledgerhq/logs': 6.12.0
       '@ledgerhq/types-live': 6.70.0
-      axios: 1.13.5
+      axios: 1.15.0
       eip55: 2.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -2218,7 +2218,7 @@ packages:
       '@ethersproject/hash': 5.7.0
       '@ledgerhq/cryptoassets-evm-signatures': 13.5.6
       '@ledgerhq/live-env': 2.8.0
-      axios: 1.13.5
+      axios: 1.15.0
       crypto-js: 4.2.0
     transitivePeerDependencies:
       - debug
@@ -2238,7 +2238,7 @@ packages:
       '@ledgerhq/hw-transport-mocker': 6.29.4
       '@ledgerhq/logs': 6.12.0
       '@ledgerhq/types-live': 6.70.0
-      axios: 1.13.5
+      axios: 1.15.0
       bignumber.js: 9.1.2
       jest-sonar: 0.2.16
       semver: 7.6.0
@@ -3013,12 +3013,12 @@ packages:
       possible-typed-array-names: 1.0.0
     dev: false
 
-  /axios/1.13.5:
-    resolution: {integrity: sha512-cz4ur7Vb0xS4/KUN0tPWe44eqxrIu31me+fbang3ijiNscE129POzipJJA6zniq2C/Z6sJCjMimjS8Lc/GAs8Q==}
+  /axios/1.15.0:
+    resolution: {integrity: sha512-wWyJDlAatxk30ZJer+GeCWS209sA42X+N5jU2jy6oHTp7ufw8uzUTVFBX9+wTfAlhiJXGS0Bq7X6efruWjuK9Q==}
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.4
-      proxy-from-env: 1.1.0
+      proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -6091,8 +6091,9 @@ packages:
       ipaddr.js: 1.9.1
     dev: true
 
-  /proxy-from-env/1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+  /proxy-from-env/2.1.0:
+    resolution: {integrity: sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==}
+    engines: {node: '>=10'}
     dev: false
 
   /public-encrypt/4.0.3:
@@ -6946,7 +6947,7 @@ packages:
     resolution: {integrity: sha512-qDzdz5Qzuc9dfxYzo6yodfwtoIL+C/h1l3HbzwYJwNGgaj/owbzlLROjrlF/3Py7gO8QbTD0v4GuPQRJ1ZzseA==}
     dependencies:
       '@babel/runtime': 7.26.10
-      axios: 1.13.5
+      axios: 1.15.0
       bignumber.js: 9.1.2
       ethereum-cryptography: 2.2.1
       ethers: 6.13.5
