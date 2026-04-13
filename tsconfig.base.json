@@ -8,7 +8,8 @@
     "resolveJsonModule": true,
     "strict": true,
     "declaration": true,
-    "emitDeclarationOnly": false
+    "emitDeclarationOnly": false,
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["**/node_modules", "src/tests"]

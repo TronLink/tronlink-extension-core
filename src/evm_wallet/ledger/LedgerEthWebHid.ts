@@ -1,7 +1,7 @@
 import TransportWebHID from '@ledgerhq/hw-transport-webhid';
 import Transport from '@ledgerhq/hw-transport';
 import AppEth from '@ledgerhq/hw-app-eth';
-import { TypedDataUtils } from 'eth-sig-util';
+import { TypedDataUtils, SignTypedDataVersion } from '@metamask/eth-sig-util';
 
 import { LedgerWebHid } from '../../base_wallet/ledger';
 import { EvmWallet } from '../EvmWallet';
@@ -35,11 +35,13 @@ export class LedgerEthWebHid extends LedgerWebHid {
         'EIP712Domain',
         data.domain,
         data.types,
+        SignTypedDataVersion.V4,
       ).toString('hex');
       const hashStructMessageHex = TypedDataUtils.hashStruct(
         data.primaryType,
         data.message,
         data.types,
+        SignTypedDataVersion.V4,
       ).toString('hex');
       const response = await this._app!.signEIP712HashedMessage(
         path,
