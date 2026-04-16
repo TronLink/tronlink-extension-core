@@ -64,7 +64,6 @@ export async function checkAndReportXY(deps: ExternalDependencies): Promise<void
     if (!reportXString && !reportYString) {
       return;
     }
-    console.log('452_reportString', reportXString, reportYString);
     const config = await deps.getSystemConfig();
 
     const { success, data } = await deps.sendStatistics({
