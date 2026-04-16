@@ -11,3 +11,7 @@ webpack.config.js
 tsconfig.json
 src/tests
 demo
+.claude
+.githooks
+.security-reports
+docs
