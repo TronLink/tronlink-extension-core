@@ -1,9 +1,9 @@
 import { LedgerEthWebHid } from '../../../evm_wallet/ledger';
 import AppEth from '@ledgerhq/hw-app-eth';
-import { TypedDataUtils } from 'eth-sig-util';
+import { TypedDataUtils } from '@metamask/eth-sig-util';
 
 jest.mock('@ledgerhq/hw-app-eth');
-jest.mock('eth-sig-util');
+jest.mock('@metamask/eth-sig-util');
 
 const DEFAULT_PRIVATE_KEY = '0000000000000000000000000000000000000000000000000000000000000001';
 const DEFAULT_USER_ADDRESS1 = '0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf'; // privateKey is 000...0001
