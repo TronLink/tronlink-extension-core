@@ -76,12 +76,93 @@ Every record carries an opaque `uid` field instead of the wallet address. The ho
 3. The mapping itself never leaves the device. The backend only sees opaque UUIDs and has no way to reverse them into on-chain addresses.
 4. UUIDs are uncorrelated with the address, so two wallets held by the same human appear as two independent UUIDs — no cross-wallet linkage is possible server-side.
 
+The address is only used locally to look up the UUID; every record then references the UUID, not the address:
+
+```ts
+// src/userStatistics/userStatistics.ts
+const uuid = await getOrCreateUuid(address, deps);
+// ...record uses `uid: uuid`, never `address`
+```
+
 ### Core Design Principles
 
-- Same-day aggregation. Records are merged locally on the device before transmission. For each `(uid, actionType, tokenAddress, date)` tuple, matching rows are folded into a single row with amounts, counts and costs summed. Whether a user performs 1 or 500 identical transfers in a day, the backend receives exactly one row — individual transactions are not reconstructible from the report.
-- Amount bucketing instead of raw values. Per-transaction token amounts would themselves be a weak fingerprint, so raw amounts are replaced with a 9-range logarithmic histogram (from `0_1` up to `10m_infinite`). At report time the range keys are further compressed to two-character codes (`A1`..`A9`).
-- Closed-enum action classification. The on-chain contract type, the initiator (TronLink UI vs. external DApp), and — for smart contracts — the resolved function name are mapped to a finite integer enum. This closed enum is the only "what happened" signal that reaches the backend; contract-call arguments, method selectors outside the known set, and arbitrary `data` payloads are discarded before they ever touch the storage layer.
-- Upsert-only asset snapshots. For each address, at most one balance record per UTC day exists, and it is only re-saved when balances actually change — guaranteeing one effective snapshot per user per day, not per reporting call.
+- **Same-day aggregation.** Records are merged locally on the device before transmission. For each `(uid, actionType, tokenAddress, date)` tuple, matching rows are folded into a single row with amounts, counts and costs summed. Whether a user performs 1 or 500 identical transfers in a day, the backend receives exactly one row — individual transactions are not reconstructible from the report.
+
+  ```ts
+  // src/userStatistics/transactionRecord.ts
+  const existing = records?.find(
+    (record) =>
+      record.uid === newRecord.uid &&
+      record.actionType === newRecord.actionType &&
+      record.tokenAddress === newRecord.tokenAddress &&
+      record.date === newRecord.date,
+  );
+
+  if (existing) {
+    existing.tokenAmount = safeAdd(existing.tokenAmount, newRecord.tokenAmount);
+    existing.count       = Number(safeAdd(existing.count, newRecord.count));
+    existing.energy      = safeAdd(existing.energy, newRecord.energy);
+    existing.bandwidth   = safeAdd(existing.bandwidth, newRecord.bandwidth);
+    existing.burn        = safeAdd(existing.burn, newRecord.burn);
+    existing.txnAmountDistributions = mergeDistributions(
+      existing.txnAmountDistributions,
+      newRecord.txnAmountDistributions,
+    );
+  }
+  ```
+
+- **Amount bucketing instead of raw values.** Per-transaction token amounts would themselves be a weak fingerprint, so raw amounts are replaced with a 9-range logarithmic histogram (from `0_1` up to `10m_infinite`). At report time the range keys are further compressed to two-character codes (`A1`..`A9`).
+
+  ```ts
+  // src/userStatistics/userStatistics.ts
+  const ranges = [
+    { range: '0_1',          min: 0,          max: 1 },
+    { range: '1_10',         min: 1,          max: 10 },
+    { range: '10_100',       min: 10,         max: 100 },
+    { range: '100_1k',       min: 100,        max: 1_000 },
+    { range: '1k_10k',       min: 1_000,      max: 10_000 },
+    { range: '10k_100k',     min: 10_000,     max: 100_000 },
+    { range: '100k_1m',      min: 100_000,    max: 1_000_000 },
+    { range: '1m_10m',       min: 1_000_000,  max: 10_000_000 },
+    { range: '10m_infinite', min: 10_000_000, max: Infinity },
+  ];
+  ```
+
+- **Closed-enum action classification.** The on-chain contract type, the initiator (TronLink UI vs. external DApp), and — for smart contracts — the resolved function name are mapped to a finite integer enum. This closed enum is the only "what happened" signal that reaches the backend; contract-call arguments, method selectors outside the known set, and arbitrary `data` payloads are discarded before they ever touch the storage layer.
+
+  ```ts
+  // src/userStatistics/types.ts
+  export enum UserStatisticsActionType {
+    TRX_TRANSFER              = 1051,
+    TRC10_TRANSFER            = 1052,
+    TRC20_TRANSFER            = 1053,
+    TRC721_TRANSFER           = 1054,
+    TRX_STAKE                 = 1061,
+    TRX_VOTE                  = 1062,
+    // ...
+    DAPP_AUTH                 = 1071,
+    DAPP_TRIGGER_CONTRACT     = 1076,
+    UPDATE_ACCOUNT_PERMISSION = 1081,
+  }
+  ```
+
+- **Upsert-only asset snapshots.** For each address, at most one balance record per UTC day exists, and it is only re-saved when balances actually change — guaranteeing one effective snapshot per user per day, not per reporting call.
+
+  ```ts
+  // src/userStatistics/assetPrecipitation.ts
+  if (
+    existingData &&
+    (existingData.trxBalance !== newData.trxBalance ||
+      existingData.usdtBalance !== newData.usdtBalance ||
+      existingData.date !== newData.date)
+  ) {
+    saveAddressAssetPrecipitation(
+      address,
+      { ...newData, id: existingData.id, isNeedReport: true },
+      deps,
+    );
+  }
+  ```
 
 ## Local Build
 
