@@ -123,7 +123,7 @@ export class EvmWallet extends BaseWallet {
     const { r, s, v } = fromRpcSig(signature);
     const publicKey = ecrecover(hashPersonalMessage(Buffer.from(msgHexToText(message))), v, r, s);
     const address = publicToAddress(publicKey, true);
-    return `${address.toString('hex').toLowerCase()}` === expectAddress.slice(2).toLowerCase();
+    return `${address.toString('hex').toLowerCase()}` === stripHexPrefix(expectAddress).toLowerCase();
   }
 
   public verifyEthTransactionSign(
