@@ -71,20 +71,7 @@ async getOrCreateUuid(address: string): Promise<string> {
 Records are merged locally per `(uid, actionType, tokenAddress, day)` before upload, and raw amounts are replaced with a 9-bucket logarithmic histogram (`A1..A9`). Only these two payloads are sent (encrypted):
 
 ```ts
-// src/userStatistics/types.ts
-
-// AddressAssetPrecipitation — daily asset snapshot (one per uid per UTC day)
-export type AddressAssetPrecipitation = {
-  uid: string;              // anonymous UUID, never the address
-  addressType: number;      // wallet provenance enum (mnemonic/imported/hardware…)
-  trxBalance: string;
-  usdtBalance: string;
-  totalBalanceInUSD: string;
-  realTokenUsd: string;
-  date: string;             // YYYY-MM-DD (UTC)
-};
-
-// TransactionRecord — aggregated daily action counts
+// Record — aggregated daily action counts
 export type TransactionRecord = {
   uid: string;
   addressType: number;
