@@ -47,82 +47,59 @@ Please refer to the demos below:
 
 ## Analytics Module (Privacy-First Design)
 
-The `userStatistics` module (`src/userStatistics/`) is a lightweight, opt-in analytics component designed to give the product team aggregated usage insights without ever learning who the user is or what their wallet address is. This section describes the privacy model, the core design principles, and the user-facing mechanisms that make those guarantees hold.
+The metrics module collects aggregated usage data only. Wallet addresses, keys, mnemonics, transaction hashes, counter-parties, and device identifiers are never transmitted. The backend receives only opaque UUIDs and same-day aggregated buckets; individual transactions are not reconstructible.
 
-### Privacy Model — What Is (and Isn't) Collected
+### Address → UUID Anonymization
 
-Never collected, never transmitted:
-
-- Wallet addresses (TRX / EVM / any form).
-- Public keys, mnemonic phrases, private keys, or any signing material.
-- Transaction hashes, counter-party addresses, memo fields, or contract call parameters.
-- IP, device fingerprint, or any identifier derived from the host browser.
-- The `address` argument accepted by the public API is used only as a local lookup key (to find the anonymous UUID and index the local IndexedDB store). It never appears in any outbound payload.
-
-Collected and reported in aggregated form:
-
-- An anonymous per-address UUID.
-- A coarse wallet provenance enum (`addressType` — mnemonic / imported / hardware / etc.).
-- Daily balance snapshots per UUID (TRX / USDT / whitelisted-token USD totals).
-- Daily counts of transaction actions by action type, token address, and amount-range bucket.
-
-### Address Anonymization
-
-Every record carries an opaque `uid` field instead of the wallet address. The host application maintains a local `address → uuid` map:
-
-1. On first use of an address, a fresh random UUID is generated and stored locally.
-2. Subsequent calls return the same UUID so backend aggregation works across sessions.
-3. The mapping itself never leaves the device. The backend only sees opaque UUIDs and has no way to reverse them into on-chain addresses.
-4. UUIDs are uncorrelated with the address, so two wallets held by the same human appear as two independent UUIDs — no cross-wallet linkage is possible server-side.
-
-The address is only used locally to look up the UUID; every record then references the UUID, not the address:
+Each address is mapped to a random UUID stored locally only. The backend never sees the address, and the same user's two wallets appear as two independent UUIDs (no server-side linkage).
 
 ```ts
-// src/userStatistics/userStatistics.ts
-const uuid = await getOrCreateUuid(address, deps);
-// ...record uses `uid: uuid`, never `address`
+// src/userStatistics/addressUuidMap.ts — local-only address → uuid mapping
+async getOrCreateUuid(address: string): Promise<string> {
+  const entity = await uidMappingStore.getByAddress(address);
+  if (!entity) {
+    const uuid = crypto.randomUUID();          // fresh random UUID
+    await uidMappingStore.insert(address, uuid); // persisted on-device only
+    return uuid;
+  }
+  return entity.uid;
+}
 ```
 
-### Core Design Principles
+### What Is Uploaded
 
-- **Same-day aggregation.** Records are merged locally on the device before transmission. For each `(uid, actionType, tokenAddress, date)` tuple, matching rows are folded into a single row with amounts, counts and costs summed. Whether a user performs 1 or 500 identical transfers in a day, the backend receives exactly one row — individual transactions are not reconstructible from the report.
+Records are merged locally per `(uid, actionType, tokenAddress, day)` before upload, and raw amounts are replaced with a 9-bucket logarithmic histogram (`A1..A9`). Only these two payloads are sent (encrypted):
 
-  ```ts
-  // src/userStatistics/transactionRecord.ts
-  const existing = records?.find(
-      record.uid === newRecord.uid &&......
-      record.date === newRecord.date,
-  );
-  ```
-  
-- **Amount bucketing instead of raw values.** Per-transaction token amounts would themselves be a weak fingerprint, so raw amounts are replaced with a 9-range logarithmic histogram (from `0_1` up to `10m_infinite`). At report time the range keys are further compressed to two-character codes (`A1`..`A9`).
+```ts
+// src/userStatistics/types.ts
 
-  ```ts
-  // src/userStatistics/userStatistics.ts
-  const ranges = [
-    { range: '0_1',          min: 0,          max: 1 },
-    ..........
-    { range: '1m_10m',       min: 1_000_000,  max: 10_000_000 },
-    { range: '10m_infinite', min: 10_000_000, max: Infinity },
-  ];
-  ```
-  
-- **Closed-enum action classification.** The on-chain contract type, the initiator (TronLink UI vs. external DApp), and — for smart contracts — the resolved function name are mapped to a finite integer enum. 
+// AddressAssetPrecipitation — daily asset snapshot (one per uid per UTC day)
+export type AddressAssetPrecipitation = {
+  uid: string;              // anonymous UUID, never the address
+  addressType: number;      // wallet provenance enum (mnemonic/imported/hardware…)
+  trxBalance: string;
+  usdtBalance: string;
+  totalBalanceInUSD: string;
+  realTokenUsd: string;
+  date: string;             // YYYY-MM-DD (UTC)
+};
 
-- **Upsert-only asset snapshots.** For each address, at most one balance record per UTC day exists, and it is only re-saved when balances actually change — guaranteeing one effective snapshot per user per day, not per reporting call.
-
-  ```ts
-  // src/userStatistics/assetPrecipitation.ts
-  if (
-    existingData &&......)
-  ) {
-    saveAddressAssetPrecipitation(
-      address,
-      { ...newData, id: existingData.id, isNeedReport: true },
-      deps,
-    );
-  }
-  ```
+// TransactionRecord — aggregated daily action counts
+export type TransactionRecord = {
+  uid: string;
+  addressType: number;
+  contractType: number;
+  actionType: number;       // closed enum; unknown contract calls discarded
+  count: number;
+  tokenAddress: string;     // TRX / TRC10 / TRC20 id
+  tokenAmount: string;
+  energy: string;
+  bandwidth: string;
+  burn: string;
+  date: string;
+  txnAmountDistributions: TransactionDistribution[]; // bucketed, e.g. [{range:'A1',count:1},{range:'A2',count:3}]
+};
+```
 
 ## Local Build
 
