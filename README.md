@@ -68,25 +68,15 @@ async getOrCreateUuid(address: string): Promise<string> {
 
 ### What Is Uploaded
 
-Records are merged locally per `(uid, actionType, tokenAddress, day)` before upload, and raw amounts are replaced with a 9-bucket logarithmic histogram (`A1..A9`). Only these two payloads are sent (encrypted):
+Records are merged locally per `(uid, actionType, tokenAddress, day)` before upload, and raw amounts are replaced with a 9-bucket logarithmic histogram (`A1..A9`).
 
-```ts
-// Record — aggregated daily action counts
-export type TransactionRecord = {
-  uid: string;
-  addressType: number;
-  contractType: number;
-  actionType: number;       // closed enum; unknown contract calls discarded
-  count: number;
-  tokenAddress: string;     // TRX / TRC10 / TRC20 id
-  tokenAmount: string;
-  energy: string;
-  bandwidth: string;
-  burn: string;
-  date: string;
-  txnAmountDistributions: TransactionDistribution[]; // bucketed, e.g. [{range:'A1',count:1},{range:'A2',count:3}]
-};
-```
+Never collected, never transmitted:
+
+ • Wallet addresses , Public keys, Mnemonic phrases, Private keys.
+
+ • Transaction hashes , Contract call parameters.
+
+ • IP, device fingerprint,  any identifier derived from the host browser.
 
 ## Local Build
 
