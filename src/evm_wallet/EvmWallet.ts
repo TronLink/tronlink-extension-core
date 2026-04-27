@@ -17,7 +17,7 @@ import {
 import { ethers } from 'ethers';
 import { TransactionFactory } from '@ethereumjs/tx';
 import { Chain, Common, Hardfork } from '@ethereumjs/common';
-import { signTypedData_v4 } from 'eth-sig-util';
+import { signTypedData, SignTypedDataVersion } from '@metamask/eth-sig-util';
 
 import type {
   DerivePrivateKeyParams,
@@ -143,7 +143,11 @@ export class EvmWallet extends BaseWallet {
         'The "data" parameter of the function "signTypedData" must be passed in type of a specific structure',
       );
     }
-    return signTypedData_v4(Buffer.from(params.privateKey, 'hex'), { data: params.data as any });
+    return signTypedData({
+      privateKey: Buffer.from(params.privateKey, 'hex'),
+      data: params.data as any,
+      version: SignTypedDataVersion.V4,
+    });
   }
 
   signedConvertRSVtoHex({ r, s, v }: { r: Buffer; s: Buffer; v: bigint }) {
