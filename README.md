@@ -17,7 +17,7 @@
 - **Transaction, message, and EIP-712 typed-data signing** for both ecosystems.
 - **Hardware wallet (Ledger) integration** over WebHID for both TRX and ETH apps.
 - **Address & signature validation utilities**.
-- **A privacy-preserving usage analytics module** whose design and guarantees are documented in [`privacy.md`](./privacy.md).
+- **A privacy-preserving usage analytics module** whose design and guarantees are documented in [`PRIVACY.md`](./PRIVACY.md).
 
 The package is **non-custodial and stateless**: no keys, mnemonics, or addresses ever leave the host process unless the embedding application explicitly chooses to persist them. The package is published under **Apache-2.0** and the source is fully open for audit.
 
@@ -280,7 +280,7 @@ await getAndUpdateTransactionRecord(txMeta, deps);
 await checkAndReportXY(deps);  // batched, encrypted upload
 ```
 
-The privacy guarantees, threat model, and exact on-the-wire payload format are documented separately in [`privacy.md`](./privacy.md). Auditors should start there.
+The privacy guarantees, threat model, and exact on-the-wire payload format are documented separately in [`PRIVACY.md`](./PRIVACY.md). Auditors should start there.
 
 ---
 
@@ -378,7 +378,7 @@ This project follows [Semantic Versioning](https://semver.org/). Breaking change
 
 ## Privacy
 
-The technical mechanisms by which the TronLink extension avoids collecting device-resident wallet addresses are implemented in this package and documented in [`privacy.md`](./privacy.md).
+The technical mechanisms by which the TronLink extension avoids collecting device-resident wallet addresses are implemented in this package and documented in [`PRIVACY.md`](./PRIVACY.md).
 
 Every claim in that document is anchored to specific files in `src/userStatistics/`. Independent audits are welcome.
 
