@@ -1,6 +1,6 @@
 {
   "name": "@tronlink/core",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "The library serves as a core module within TronLink Extension, which provides low-level wallet functionality for both Tron and Ethereum networks, primary features includes account generation and transaction signing",
   "repository": {
     "type": "git",
@@ -88,7 +88,7 @@
   "pnpm": {
     "overrides": {
       "braces": "3.0.3",
-      "axios": "1.15.0",
+      "axios": "1.15.2",
       "elliptic": "6.6.1",
       "ethers@6.11.1>ws": "8.17.1",
       "@ethersproject/providers@5.7.2>ws": "7.5.10",
