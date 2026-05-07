@@ -1,5 +1,4 @@
-// @ts-ignore
-import bip39 from 'bip39';
+import * as bip39 from 'bip39';
 import { HDKey } from 'ethereum-cryptography/hdkey';
 import {
   bufferToHex,
@@ -37,7 +36,7 @@ export class EvmWallet extends BaseWallet {
   }
 
   derivePrivateKey(params: DerivePrivateKeyParams): string {
-    const seed = bip39.mnemonicToSeed(params.mnemonic);
+    const seed = bip39.mnemonicToSeedSync(params.mnemonic);
 
     const hdWallet = HDKey.fromMasterSeed(seed);
     const wallet = hdWallet.derive(params.path);

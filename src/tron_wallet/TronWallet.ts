@@ -1,7 +1,6 @@
 // @ts-ignore
 import * as bip32 from 'bip32';
-// @ts-ignore
-import bip39 from 'bip39';
+import * as bip39 from 'bip39';
 // @ts-ignore
 import { TronWeb } from 'tronweb';
 
@@ -24,7 +23,7 @@ export class TronWallet extends BaseWallet {
   }
 
   derivePrivateKey(params: DerivePrivateKeyParams): string {
-    const seed = bip39.mnemonicToSeed(params.mnemonic);
+    const seed = bip39.mnemonicToSeedSync(params.mnemonic);
     // @ts-ignore
     const node = bip32.fromSeed(seed);
     const child = node.derivePath(params.path);
