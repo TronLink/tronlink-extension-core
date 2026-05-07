@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import { SignError } from '../../base_wallet/error';
 import { LedgerSigner } from '../../base_wallet/ledger/LedgerSigner';
 import { LedgerSignParams } from '../../base_wallet/types';
-import { isHex, msgHexToText } from '../util';
+import { messageToBuffer } from '../util';
 import { LedgerEthWebHid } from './LedgerEthWebHid';
 
 const regStartWithZeroX = new RegExp(/^0x/i);
@@ -16,9 +16,7 @@ export class LedgerEvmSigner extends LedgerSigner {
       let signedResponse;
       if (typeof transaction === 'string') {
         signedResponse = await ledgerWebHid.signPersonalMessage(
-          isHex(transaction.replace(regStartWithZeroX, ''))
-            ? msgHexToText(Buffer.from(transaction.replace(regStartWithZeroX, ''), 'utf8').toString('hex'))
-            : Buffer.from(transaction, 'utf8').toString('hex'),
+          messageToBuffer(transaction).toString('hex'),
           path,
         );
       } else {
