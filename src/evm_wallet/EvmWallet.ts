@@ -13,7 +13,7 @@ import {
   fromRpcSig,
   hashPersonalMessage,
 } from '@ethereumjs/util';
-import { ethers } from 'ethers';
+import { keccak256, recoverAddress } from 'ethers';
 import { TransactionFactory } from '@ethereumjs/tx';
 import { Chain, Common, Hardfork } from '@ethereumjs/common';
 import { signTypedData, SignTypedDataVersion } from '@metamask/eth-sig-util';
@@ -26,7 +26,7 @@ import type {
 } from '../base_wallet/types';
 import { BaseWallet } from '../base_wallet';
 import { CoinType } from '../base_wallet/constants';
-import { messageToBuffer } from './util';
+import { buildUnsignedTransaction, messageToBuffer } from './util';
 import { checkSignParams } from '../utils';
 import { InvalidParameterError, SignError } from '../base_wallet/error';
 
@@ -129,9 +129,9 @@ export class EvmWallet extends BaseWallet {
     rsvSignature: { r: string; s: string; v: number },
     expectAddress: string,
   ) {
-    const serializedTransaction = ethers.utils.serializeTransaction(rawTransaction);
-    const txHash = ethers.utils.keccak256(serializedTransaction);
-    const recoveredAddress = ethers.utils.recoverAddress(txHash, rsvSignature);
+    const serializedTransaction = buildUnsignedTransaction(rawTransaction).unsignedSerialized;
+    const txHash = keccak256(serializedTransaction);
+    const recoveredAddress = recoverAddress(txHash, rsvSignature);
     return expectAddress.toLowerCase() === recoveredAddress.toLowerCase();
   }
 

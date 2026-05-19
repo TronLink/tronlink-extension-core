@@ -1,9 +1,7 @@
-import { ethers } from 'ethers';
-
 import { SignError } from '../../base_wallet/error';
 import { LedgerSigner } from '../../base_wallet/ledger/LedgerSigner';
 import { LedgerSignParams } from '../../base_wallet/types';
-import { messageToBuffer } from '../util';
+import { buildUnsignedTransaction, messageToBuffer } from '../util';
 import { LedgerEthWebHid } from './LedgerEthWebHid';
 
 const regStartWithZeroX = new RegExp(/^0x/i);
@@ -21,7 +19,7 @@ export class LedgerEvmSigner extends LedgerSigner {
         );
       } else {
         signedResponse = await ledgerWebHid.signTransaction(
-          ethers.utils.serializeTransaction(transaction).replace(regStartWithZeroX, ''),
+          buildUnsignedTransaction(transaction).unsignedSerialized.replace(regStartWithZeroX, ''),
           path,
         );
       }

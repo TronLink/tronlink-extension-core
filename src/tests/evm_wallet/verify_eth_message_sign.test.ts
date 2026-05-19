@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import { verifyMessage, getBytes } from 'ethers';
 import { EvmWallet } from '../../evm_wallet';
 
 const DEFAULT_PRIVATE_KEY = '0000000000000000000000000000000000000000000000000000000000000001';
@@ -92,28 +92,28 @@ describe('evm wallet - signMessage EIP-191 interop with ethers', () => {
   it('plain text signs the UTF-8 bytes of the message', async () => {
     const message = 'testMessage';
     const sig = await wallet.signMessage({ privateKey: DEFAULT_PRIVATE_KEY, data: message });
-    const recovered = ethers.utils.verifyMessage(message, sig);
+    const recovered = verifyMessage(message, sig);
     expect(recovered.toLowerCase()).toBe(DEFAULT_USER_ADDRESS1.toLowerCase());
   });
 
   it('0x-prefixed hex signs the raw decoded bytes', async () => {
     const message = '0xae16f78a';
     const sig = await wallet.signMessage({ privateKey: DEFAULT_PRIVATE_KEY, data: message });
-    const recovered = ethers.utils.verifyMessage(ethers.utils.arrayify(message), sig);
+    const recovered = verifyMessage(getBytes(message), sig);
     expect(recovered.toLowerCase()).toBe(DEFAULT_USER_ADDRESS1.toLowerCase());
   });
 
   it('bare hex without "0x" signs the UTF-8 bytes of the string', async () => {
     const message = 'ae16f78a';
     const sig = await wallet.signMessage({ privateKey: DEFAULT_PRIVATE_KEY, data: message });
-    const recovered = ethers.utils.verifyMessage(message, sig);
+    const recovered = verifyMessage(message, sig);
     expect(recovered.toLowerCase()).toBe(DEFAULT_USER_ADDRESS1.toLowerCase());
   });
 
   it('0x-prefixed hex with high bytes signs raw bytes (not UTF-8 mojibake)', async () => {
     const message = '0xdeadbeef';
     const sig = await wallet.signMessage({ privateKey: DEFAULT_PRIVATE_KEY, data: message });
-    const recovered = ethers.utils.verifyMessage(ethers.utils.arrayify(message), sig);
+    const recovered = verifyMessage(getBytes(message), sig);
     expect(recovered.toLowerCase()).toBe(DEFAULT_USER_ADDRESS1.toLowerCase());
   });
 });

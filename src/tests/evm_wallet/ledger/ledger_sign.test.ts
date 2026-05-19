@@ -1,4 +1,3 @@
-import { ethers } from 'ethers';
 import { SignError } from '../../../base_wallet/error';
 import { LedgerEthWebHid, LedgerEvmSigner } from '../../../evm_wallet';
 
@@ -47,10 +46,13 @@ describe('evm ledgerSign test', () => {
       data: testObjectTransaction,
       path: testPath,
     });
-    expect(ledgerWebHid.signTransaction).toHaveBeenCalledWith(
-      ethers.utils.serializeTransaction(testObjectTransaction).replace(/^0x/, ''),
-      testPath,
-    );
+    // Hardcoded oracle: legacy unsigned RLP for { to: ADDR1, value: 1111 }
+    // produced by ethers v5 `serializeTransaction`. Locking the bytes here
+    // (rather than recomputing them with the current ethers version) is what
+    // catches the v6-style envelope regression the user surfaced.
+    const expectedSerialized =
+      'dc808080947e5f4552091a69125d5dfcb7b8c2659029395bdf82045780';
+    expect(ledgerWebHid.signTransaction).toHaveBeenCalledWith(expectedSerialized, testPath);
   });
 
   it('throw error', async () => {
