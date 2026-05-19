@@ -1,39 +1,14 @@
-import { stripHexPrefix } from '@ethereumjs/util';
+const HEX_MESSAGE_REGEX = /^0x[0-9a-fA-F]+$/;
 
-export function isHex(hex: string) {
-  return /^[A-Fa-f0-9]+$/.test(hex);
+export function isHexMessage(value: string): boolean {
+  return HEX_MESSAGE_REGEX.test(value);
 }
 
-export const splitStringByLength = ({ str, length }: { str: string; length: number }) => {
-  const arr = [];
-  let index = 0;
-  if (length < 1) {
-    length = 1;
+export function messageToBuffer(message: string): Buffer {
+  if (isHexMessage(message)) {
+    const stripped = message.slice(2);
+    const padded = stripped.length % 2 === 0 ? stripped : `0${stripped}`;
+    return Buffer.from(padded, 'hex');
   }
-  while (index < str.length) {
-    arr.push(str.slice(index, (index += length)));
-  }
-  return arr;
-};
-
-export function strInsert(str: string) {
-  const arr = splitStringByLength({ str, length: 2 }).map((item) => {
-    return String.fromCharCode(parseInt(`0x${item}`));
-  });
-  return arr.join('');
-}
-
-export function msgHexToText(hex: string) {
-  try {
-    const stripped = stripHexPrefix(hex);
-    const buff = Buffer.from(stripped, 'hex');
-    if (hex.indexOf('0x') === 0) {
-      return buff.toString('utf8');
-    } else if (isHex(hex)) {
-      return strInsert(hex);
-    }
-    return hex;
-  } catch (e) {
-    return hex;
-  }
+  return Buffer.from(message, 'utf8');
 }

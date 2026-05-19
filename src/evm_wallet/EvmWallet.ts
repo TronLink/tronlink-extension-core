@@ -1,5 +1,4 @@
-// @ts-ignore
-import bip39 from 'bip39';
+import * as bip39 from 'bip39';
 import { HDKey } from 'ethereum-cryptography/hdkey';
 import {
   bufferToHex,
@@ -27,7 +26,7 @@ import type {
 } from '../base_wallet/types';
 import { BaseWallet } from '../base_wallet';
 import { CoinType } from '../base_wallet/constants';
-import { msgHexToText } from './util';
+import { messageToBuffer } from './util';
 import { checkSignParams } from '../utils';
 import { InvalidParameterError, SignError } from '../base_wallet/error';
 
@@ -37,7 +36,7 @@ export class EvmWallet extends BaseWallet {
   }
 
   derivePrivateKey(params: DerivePrivateKeyParams): string {
-    const seed = bip39.mnemonicToSeed(params.mnemonic);
+    const seed = bip39.mnemonicToSeedSync(params.mnemonic);
 
     const hdWallet = HDKey.fromMasterSeed(seed);
     const wallet = hdWallet.derive(params.path);
@@ -90,9 +89,8 @@ export class EvmWallet extends BaseWallet {
         'The "data" parameter of the function "signMessage" must be passed in string type',
       );
     }
-    const textMessage = msgHexToText(param.data);
     const signature = ecsign(
-      hashPersonalMessage(Buffer.from(textMessage)),
+      hashPersonalMessage(messageToBuffer(param.data)),
       Buffer.from(param.privateKey, 'hex'),
     );
     const rawMsgSign = this.signedConvertRSVtoHex({
@@ -121,7 +119,7 @@ export class EvmWallet extends BaseWallet {
 
   public verifyEthMessageSign(signature: string, message: string, expectAddress: string) {
     const { r, s, v } = fromRpcSig(signature);
-    const publicKey = ecrecover(hashPersonalMessage(Buffer.from(msgHexToText(message))), v, r, s);
+    const publicKey = ecrecover(hashPersonalMessage(messageToBuffer(message)), v, r, s);
     const address = publicToAddress(publicKey, true);
     return `${address.toString('hex').toLowerCase()}` === stripHexPrefix(expectAddress).toLowerCase();
   }

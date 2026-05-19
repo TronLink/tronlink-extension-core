@@ -1,5 +1,4 @@
-// @ts-ignore
-import bip39 from 'bip39';
+import * as bip39 from 'bip39';
 
 import type {
   DerivePathParams,
