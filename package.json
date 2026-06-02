@@ -88,7 +88,7 @@
   "pnpm": {
     "overrides": {
       "braces": "3.0.3",
-      "axios": "1.15.2",
+      "axios": "1.16.0",
       "elliptic": "6.6.1",
       "micromatch": "4.0.8",
       "express": "4.20.0",
@@ -115,7 +115,8 @@
       "picomatch": "2.3.2",
       "follow-redirects": "1.16.0",
       "fast-uri": "3.1.2",
-      "@babel/plugin-transform-modules-systemjs": "7.29.4"
+      "@babel/plugin-transform-modules-systemjs": "7.29.4",
+      "uuid": "11.1.1"
     }
   }
 }
