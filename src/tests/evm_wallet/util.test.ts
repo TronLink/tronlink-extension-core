@@ -1,4 +1,4 @@
-import { isHexMessage, messageToBuffer } from '../../evm_wallet/util';
+import { buildUnsignedTransaction, isHexMessage, messageToBuffer } from '../../evm_wallet/util';
 
 describe('isHexMessage', () => {
   test('returns true for 0x-prefixed even-length hex', () => {
@@ -62,5 +62,99 @@ describe('messageToBuffer', () => {
   test('utf8-encodes multi-byte unicode text', () => {
     const buf = messageToBuffer('你好');
     expect(Array.from(buf)).toEqual([0xe4, 0xbd, 0xa0, 0xe5, 0xa5, 0xbd]);
+  });
+});
+
+describe('buildUnsignedTransaction', () => {
+  const TO = '0x2B5AD5c4795c026514f8317c7a215E218DcCD6cF';
+  const FROM = '0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf';
+
+  // Serialized bytes below are hardcoded oracles, not recomputed from the current
+  // ethers version — locking them is what catches a v6-style envelope regression.
+  test('defaults a type-less transaction to legacy (type 0)', () => {
+    const tx = buildUnsignedTransaction({
+      to: TO,
+      value: '0x1',
+      gasLimit: '0x5208',
+      nonce: '0xe',
+      chainId: 1,
+    });
+    expect(tx.type).toBe(0);
+    expect(tx.unsignedSerialized).toBe(
+      '0xdf0e80825208942b5ad5c4795c026514f8317c7a215e218dccd6cf0180018080',
+    );
+  });
+
+  test('normalizes a hex-string type "0x2" into an EIP-1559 (type 2) envelope', () => {
+    const tx = buildUnsignedTransaction({
+      to: TO,
+      value: '0x1',
+      gasLimit: '0x5208',
+      nonce: '0xe',
+      chainId: 1,
+      type: '0x2',
+      maxFeePerGas: '0x59682f0b',
+      maxPriorityFeePerGas: '0x59682f00',
+    });
+    expect(tx.type).toBe(2);
+    expect(tx.unsignedSerialized).toBe(
+      '0x02e7010e8459682f008459682f0b825208942b5ad5c4795c026514f8317c7a215e218dccd6cf0180c0',
+    );
+  });
+
+  test('normalizes a hex-string type "0x1" into an EIP-2930 (type 1) envelope', () => {
+    const tx = buildUnsignedTransaction({
+      to: TO,
+      value: '0x1',
+      gasLimit: '0x5208',
+      nonce: '0xe',
+      chainId: 1,
+      type: '0x1',
+      gasPrice: '0x59682f00',
+      accessList: [],
+    });
+    expect(tx.type).toBe(1);
+    expect(tx.unsignedSerialized).toBe(
+      '0x01e2010e8459682f00825208942b5ad5c4795c026514f8317c7a215e218dccd6cf0180c0',
+    );
+  });
+
+  test('accepts a numeric type as-is (not reparsed as hex)', () => {
+    const tx = buildUnsignedTransaction({
+      to: TO,
+      value: '0x1',
+      gasLimit: '0x5208',
+      nonce: '0xe',
+      chainId: 1,
+      type: 1,
+      gasPrice: '0x59682f00',
+      accessList: [],
+    });
+    expect(tx.type).toBe(1);
+  });
+
+  test('strips unknown wallet-only fields (from, isUserEdit) before building', () => {
+    const clean = {
+      to: TO,
+      value: '0x1',
+      gasLimit: '0x5208',
+      nonce: '0xe',
+      chainId: 1,
+      type: '0x2',
+      maxFeePerGas: '0x59682f0b',
+      maxPriorityFeePerGas: '0x59682f00',
+    };
+    const dirty = { ...clean, from: FROM, isUserEdit: false };
+    // Extra fields must not change the bytes: this proves they were filtered out
+    // rather than passed to Transaction.from, which rejects `from` on unsigned txs.
+    expect(buildUnsignedTransaction(dirty).unsignedSerialized).toBe(
+      buildUnsignedTransaction(clean).unsignedSerialized,
+    );
+  });
+
+  test('throws on a non-numeric type string', () => {
+    expect(() =>
+      buildUnsignedTransaction({ to: TO, value: '0x1', chainId: 1, type: 'abc' }),
+    ).toThrow();
   });
 });
