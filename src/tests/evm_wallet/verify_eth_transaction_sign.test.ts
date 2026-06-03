@@ -136,4 +136,31 @@ describe('evm walLet - verifyEthTransactionSign', () => {
       wallet.verifyEthTransactionSign(rawUnsignedTransaction3, rsvSignature, DEFAULT_USER_ADDRESS1),
     ).toBe(true);
   });
+
+  it('EIP-1559 transaction with hex string type', async () => {
+    const signedTx = await wallet.signTransaction({
+      privateKey: DEFAULT_PRIVATE_KEY,
+      data: {
+        common: wallet.getCommonConfiguration({
+          isSupportsEIP1559: true,
+          chain: Chain.Mainnet,
+          chainId: '0x1',
+          chainName: 'Mainnet',
+        }),
+        unSignedTransaction: testData1.unSignedTransaction,
+      },
+    });
+    const rsvSignature = {
+      r: '0x' + signedTx.r.toString(16),
+      s: '0x' + signedTx.s.toString(16),
+      v: Number(signedTx.v),
+    };
+    expect(
+      wallet.verifyEthTransactionSign(
+        testData1.unSignedTransaction,
+        rsvSignature,
+        DEFAULT_USER_ADDRESS1,
+      ),
+    ).toBe(true);
+  });
 });

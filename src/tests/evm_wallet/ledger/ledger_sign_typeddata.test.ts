@@ -1,4 +1,3 @@
-import { ethers } from 'ethers';
 import { SignError } from '../../../base_wallet/error';
 import { LedgerEthWebHid, LedgerEvmSigner } from '../../../evm_wallet';
 
