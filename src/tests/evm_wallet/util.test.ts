@@ -66,8 +66,11 @@ describe('messageToBuffer', () => {
 });
 
 describe('buildUnsignedTransaction', () => {
-  const TO = '0x2B5AD5c4795c026514f8317c7a215E218DcCD6cF';
-  const FROM = '0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf';
+  // Plain placeholder addresses: this helper only serializes (never signs or
+  // recovers), so any valid address works — no need for the keypair-derived
+  // DEFAULT_USER_ADDRESS constants the signing tests use.
+  const TO = '0x0000000000000000000000000000000000000001';
+  const FROM = '0x0000000000000000000000000000000000000002';
 
   // Serialized bytes below are hardcoded oracles, not recomputed from the current
   // ethers version — locking them is what catches a v6-style envelope regression.
@@ -81,7 +84,7 @@ describe('buildUnsignedTransaction', () => {
     });
     expect(tx.type).toBe(0);
     expect(tx.unsignedSerialized).toBe(
-      '0xdf0e80825208942b5ad5c4795c026514f8317c7a215e218dccd6cf0180018080',
+      '0xdf0e808252089400000000000000000000000000000000000000010180018080',
     );
   });
 
@@ -98,7 +101,7 @@ describe('buildUnsignedTransaction', () => {
     });
     expect(tx.type).toBe(2);
     expect(tx.unsignedSerialized).toBe(
-      '0x02e7010e8459682f008459682f0b825208942b5ad5c4795c026514f8317c7a215e218dccd6cf0180c0',
+      '0x02e7010e8459682f008459682f0b8252089400000000000000000000000000000000000000010180c0',
     );
   });
 
@@ -115,7 +118,7 @@ describe('buildUnsignedTransaction', () => {
     });
     expect(tx.type).toBe(1);
     expect(tx.unsignedSerialized).toBe(
-      '0x01e2010e8459682f00825208942b5ad5c4795c026514f8317c7a215e218dccd6cf0180c0',
+      '0x01e2010e8459682f008252089400000000000000000000000000000000000000010180c0',
     );
   });
 
