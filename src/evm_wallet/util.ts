@@ -1,4 +1,6 @@
-import { Transaction } from 'ethers';
+import { Transaction, getBigInt } from 'ethers';
+
+import { InvalidParameterError } from '../base_wallet/error';
 
 const HEX_MESSAGE_REGEX = /^0x[0-9a-fA-F]+$/;
 
@@ -37,11 +39,16 @@ const TX_FIELDS = new Set<string>([
 //   3. Wallet payloads carry extra fields (`from`, `isUserEdit`, …) that v6
 //      rejects on unsigned txs.
 // This helper restores the v5-compatible legacy default, normalizes hex `type`,
-// and strips unknown fields before building the Transaction.
+// and strips unknown fields before building the Transaction. It also rejects a
+// missing or zero chainId: ethers would serialize a pre-EIP-155 payload whose
+// Ledger signature is replayable on every EVM chain.
 export function buildUnsignedTransaction(raw: Record<string, any>): Transaction {
   const out: Record<string, any> = {};
   for (const k of Object.keys(raw)) {
     if (TX_FIELDS.has(k)) out[k] = raw[k];
+  }
+  if (out.chainId == null || getBigInt(out.chainId) <= 0n) {
+    throw new InvalidParameterError('a positive chainId is required (EIP-155 replay protection)');
   }
   if (out.type === undefined) {
     out.type = 0;

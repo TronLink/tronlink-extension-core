@@ -1,3 +1,4 @@
+import { InvalidParameterError } from '../../base_wallet/error';
 import { buildUnsignedTransaction, isHexMessage, messageToBuffer } from '../../evm_wallet/util';
 
 describe('isHexMessage', () => {
@@ -159,5 +160,17 @@ describe('buildUnsignedTransaction', () => {
     expect(() =>
       buildUnsignedTransaction({ to: TO, value: '0x1', chainId: 1, type: 'abc' }),
     ).toThrow();
+  });
+
+  // chainId guard: without it ethers serializes a pre-EIP-155 payload and a
+  // Ledger signature over it is replayable on every EVM chain.
+  test('throws InvalidParameterError when chainId is missing', () => {
+    expect(() => buildUnsignedTransaction({ to: TO, value: '0x1' })).toThrow(InvalidParameterError);
+  });
+
+  test.each([0, '0x0'])('throws InvalidParameterError when chainId is %p', chainId => {
+    expect(() => buildUnsignedTransaction({ to: TO, value: '0x1', chainId })).toThrow(
+      InvalidParameterError,
+    );
   });
 });
