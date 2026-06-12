@@ -34,6 +34,7 @@ describe('evm ledgerSign test', () => {
     const testObjectTransaction = {
       to: DEFAULT_USER_ADDRESS1,
       value: 1111,
+      chainId: 1,
     };
     LedgerEthWebHid.prototype.signPersonalMessage = jest
       .fn()
@@ -46,12 +47,12 @@ describe('evm ledgerSign test', () => {
       data: testObjectTransaction,
       path: testPath,
     });
-    // Hardcoded oracle: legacy unsigned RLP for { to: ADDR1, value: 1111 }
-    // produced by ethers v5 `serializeTransaction`. Locking the bytes here
-    // (rather than recomputing them with the current ethers version) is what
-    // catches the v6-style envelope regression the user surfaced.
+    // Hardcoded oracle: legacy unsigned RLP for { to: ADDR1, value: 1111, chainId: 1 }
+    // with the EIP-155 [chainId, 0, 0] trailer. Locking the bytes here (rather than
+    // recomputing them with the current ethers version) is what catches the
+    // v6-style envelope regression the user surfaced.
     const expectedSerialized =
-      'dc808080947e5f4552091a69125d5dfcb7b8c2659029395bdf82045780';
+      'df808080947e5f4552091a69125d5dfcb7b8c2659029395bdf82045780018080';
     expect(ledgerWebHid.signTransaction).toHaveBeenCalledWith(expectedSerialized, testPath);
   });
 
@@ -60,12 +61,13 @@ describe('evm ledgerSign test', () => {
     const testObjectTransaction = {
       to: DEFAULT_USER_ADDRESS1,
       value: 1111,
+      chainId: 1,
     };
     LedgerEthWebHid.prototype.signTransaction = jest
       .fn()
       .mockRejectedValue(new SignError('testSignError'));
 
-    expect(
+    await expect(
       ledgerEvmSigner.ledgerSign({
         data: testObjectTransaction,
         path: testPath,
