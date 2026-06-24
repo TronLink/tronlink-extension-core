@@ -166,18 +166,24 @@ export class LedgerTrxSigner extends LedgerSigner {
       }
       return transaction;
     } catch (error: any) {
-      const stakeV2Contracts = [
+      // Contract types the Ledger app-tron cannot parse: the device returns 0x6a80, so fall back to hash signing
+      const hashFallbackContracts = [
+        // Stake 2.0 related
         'FreezeBalanceV2Contract',
         'UnfreezeBalanceV2Contract',
         'WithdrawExpireUnfreezeContract',
         'DelegateResourceContract',
         'UnDelegateResourceContract',
         'CancelAllUnfreezeV2Contract',
+        // Super Representative related
+        'WitnessCreateContract',
+        'WitnessUpdateContract',
+        'UpdateBrokerageContract',
       ];
 
       if (/Too many bytes to encode/.test(error.message)) {
         return await signHash(ledgerWebHid, transaction, path);
-      } else if (error.toString().includes('0x6a80') && stakeV2Contracts.includes(contractType)) {
+      } else if (error.toString().includes('0x6a80') && hashFallbackContracts.includes(contractType)) {
         return await signHash(ledgerWebHid, transaction, path);
       } else {
         throw new SignError(error.message);
