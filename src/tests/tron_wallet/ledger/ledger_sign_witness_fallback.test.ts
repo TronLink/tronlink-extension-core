@@ -2,7 +2,7 @@ import { SignError } from '../../../base_wallet/error';
 import { LedgerTrxSigner } from '../../../tron_wallet';
 import { transaction } from '../constants';
 
-// 这些 mock 名字以 mock 开头,才能在被 hoist 的 jest.mock 工厂里引用
+// These mock names start with "mock" so they can be referenced inside the hoisted jest.mock factory
 const mockSignTransaction = jest.fn();
 const mockSignTransactionHash = jest.fn();
 
@@ -23,7 +23,7 @@ jest.mock('../../../tron_wallet/ledger/LedgerTrxWebHid', () => {
   };
 });
 
-// 模拟 Ledger app-tron 无法解析合约类型时设备返回的 APDU 错误
+// Simulates the APDU error the device returns when the Ledger app-tron cannot parse the contract type
 const error0x6a80 = new Error('Ledger device: UNKNOWN_ERROR (0x6a80)');
 
 const buildTx = (type: string) => {
@@ -40,7 +40,7 @@ describe('ledgerSign hash fallback for Ledger-unsupported contract types', () =>
     mockSignTransactionHash.mockReset();
   });
 
-  // 本次新增到 hashFallbackContracts 的超级代表相关合约类型
+  // Super Representative contract types newly added to hashFallbackContracts
   const witnessContracts = [
     'WitnessCreateContract',
     'WitnessUpdateContract',
@@ -48,7 +48,7 @@ describe('ledgerSign hash fallback for Ledger-unsupported contract types', () =>
   ];
 
   it.each(witnessContracts)(
-    '%s: 设备返回 0x6a80 时应回退到 signTransactionHash',
+    '%s: should fall back to signTransactionHash when the device returns 0x6a80',
     async (contractType) => {
       mockSignTransaction.mockRejectedValue(error0x6a80);
       mockSignTransactionHash.mockResolvedValue('hash signature');
@@ -56,26 +56,26 @@ describe('ledgerSign hash fallback for Ledger-unsupported contract types', () =>
       const tx = buildTx(contractType);
       const result = await ledgerTrxSigner.ledgerSign({ data: tx, path: 'm/44/195/0' });
 
-      // 回退路径被走到,且用交易 hash 调用
+      // The fallback path is taken and called with the transaction hash
       expect(mockSignTransactionHash).toHaveBeenCalledTimes(1);
       expect(mockSignTransactionHash).toHaveBeenCalledWith('m/44/195/0', tx.txID);
-      // 签名结果来自 hash 签名
+      // The signature result comes from hash signing
       expect(result.signature).toEqual(['hash signature']);
     },
   );
 
-  it('未列入 hashFallbackContracts 的类型遇到 0x6a80 仍抛 SignError(不回退)', async () => {
+  it('a type not in hashFallbackContracts still throws SignError on 0x6a80 (no fallback)', async () => {
     mockSignTransaction.mockRejectedValue(error0x6a80);
     mockSignTransactionHash.mockResolvedValue('hash signature');
 
     const tx = buildTx('AccountCreateContract');
 
     await expect(ledgerTrxSigner.ledgerSign({ data: tx, path: '' })).rejects.toThrow(SignError);
-    // 不应触发 hash 回退签名
+    // Hash fallback signing should not be triggered
     expect(mockSignTransactionHash).not.toHaveBeenCalled();
   });
 
-  it('超级代表交易若设备直接签名成功,则不会触发 hash 回退', async () => {
+  it('a Super Representative transaction signed directly by the device does not trigger hash fallback', async () => {
     mockSignTransaction.mockResolvedValue('device signature');
 
     const tx = buildTx('WitnessCreateContract');

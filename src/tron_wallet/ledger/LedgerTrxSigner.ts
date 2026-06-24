@@ -166,16 +166,16 @@ export class LedgerTrxSigner extends LedgerSigner {
       }
       return transaction;
     } catch (error: any) {
-      // Ledger app-tron 无法解析的合约类型,设备返回 0x6a80,需回退到 hash 签名
+      // Contract types the Ledger app-tron cannot parse: the device returns 0x6a80, so fall back to hash signing
       const hashFallbackContracts = [
-        // 质押 2.0 相关
+        // Stake 2.0 related
         'FreezeBalanceV2Contract',
         'UnfreezeBalanceV2Contract',
         'WithdrawExpireUnfreezeContract',
         'DelegateResourceContract',
         'UnDelegateResourceContract',
         'CancelAllUnfreezeV2Contract',
-        // 超级代表相关
+        // Super Representative related
         'WitnessCreateContract',
         'WitnessUpdateContract',
         'UpdateBrokerageContract',
