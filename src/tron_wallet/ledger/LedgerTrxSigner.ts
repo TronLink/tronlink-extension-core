@@ -166,18 +166,24 @@ export class LedgerTrxSigner extends LedgerSigner {
       }
       return transaction;
     } catch (error: any) {
-      const stakeV2Contracts = [
+      // Ledger app-tron 无法解析的合约类型,设备返回 0x6a80,需回退到 hash 签名
+      const hashFallbackContracts = [
+        // 质押 2.0 相关
         'FreezeBalanceV2Contract',
         'UnfreezeBalanceV2Contract',
         'WithdrawExpireUnfreezeContract',
         'DelegateResourceContract',
         'UnDelegateResourceContract',
         'CancelAllUnfreezeV2Contract',
+        // 超级代表相关
+        'WitnessCreateContract',
+        'WitnessUpdateContract',
+        'UpdateBrokerageContract',
       ];
 
       if (/Too many bytes to encode/.test(error.message)) {
         return await signHash(ledgerWebHid, transaction, path);
-      } else if (error.toString().includes('0x6a80') && stakeV2Contracts.includes(contractType)) {
+      } else if (error.toString().includes('0x6a80') && hashFallbackContracts.includes(contractType)) {
         return await signHash(ledgerWebHid, transaction, path);
       } else {
         throw new SignError(error.message);
