@@ -9,12 +9,27 @@ import {
 } from './transactionRecord';
 import { AddressAssetPrecipitation, TransactionRecord } from './types';
 
-function buildFundReportString(records: AddressAssetPrecipitation[]): string {
+export function truncateDecimals(value: string): string {
+  if (typeof value !== 'string') {
+    return '0';
+  }
+  const s = value.trim();
+  const m = /^(-?)(\d+)(\.\d+)?$/.exec(s);
+  if (!m) {
+    return '0';
+  }
+  const intPart = m[2].replace(/^0+(?=\d)/, '');
+  return (m[1] && intPart !== '0' ? '-' : '') + intPart;
+}
+
+export function buildFundReportString(records: AddressAssetPrecipitation[]): string {
   return records
-    .map(
-      (record) =>
-        `V1X|${record.uid}|${record.addressType}|${record.trxBalance}|${record.usdtBalance}|${record.realTokenUsd}|${record.date}|`,
-    )
+    .map((record) => {
+      const trxBalance = truncateDecimals(record.trxBalance);
+      const usdtBalance = truncateDecimals(record.usdtBalance);
+      const realTokenUsd = truncateDecimals(record.realTokenUsd);
+      return `V1X|${record.uid}|${record.addressType}|${trxBalance}|${usdtBalance}|${realTokenUsd}|${record.date}|`;
+    })
     .join('');
 }
 
