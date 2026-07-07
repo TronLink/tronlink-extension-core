@@ -8,26 +8,14 @@ import {
   updateAndDeleteAllReportedTransactionRecord,
 } from './transactionRecord';
 import { AddressAssetPrecipitation, TransactionRecord } from './types';
-
-export function truncateDecimals(value: string): string {
-  if (typeof value !== 'string') {
-    return '0';
-  }
-  const s = value.trim();
-  const m = /^(-?)(\d+)(\.\d+)?$/.exec(s);
-  if (!m) {
-    return '0';
-  }
-  const intPart = m[2].replace(/^0+(?=\d)/, '');
-  return (m[1] && intPart !== '0' ? '-' : '') + intPart;
-}
+import { formatReportNumber } from './utils';
 
 export function buildFundReportString(records: AddressAssetPrecipitation[]): string {
   return records
     .map((record) => {
-      const trxBalance = truncateDecimals(record.trxBalance);
-      const usdtBalance = truncateDecimals(record.usdtBalance);
-      const realTokenUsd = truncateDecimals(record.realTokenUsd);
+      const trxBalance = formatReportNumber(record.trxBalance);
+      const usdtBalance = formatReportNumber(record.usdtBalance);
+      const realTokenUsd = formatReportNumber(record.realTokenUsd);
       return `V1X|${record.uid}|${record.addressType}|${trxBalance}|${usdtBalance}|${realTokenUsd}|${record.date}|`;
     })
     .join('');
