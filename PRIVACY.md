@@ -201,7 +201,7 @@ V1X|<uuid>|<addressType>|<trxBalance>|<usdtBalance>|<realTokenUsd>|<date>|
 **Transaction record (daily, per token + action):**
 
 ```
-V1Y|<uuid>|<addressType>|<actionType>|<count>|<tokenAddress>|<tokenAmountSum>|<energy>|<bandwidth>|<burn>|<date>|<distribution>|
+V1Y|<uuid>|<addressType>|<actionType>|<count>|<tokenAddress>|0|<energy>|<bandwidth>|<burn>|<date>|<distribution>|
 ```
 
 Notice what is **not** in either payload:
@@ -209,8 +209,6 @@ Notice what is **not** in either payload:
 - ❌ The wallet address
 - ❌ The counter-party address
 - ❌ The transaction hash
-- ❌ Per-transaction amounts (only a daily sum `<tokenAmountSum>` and a 9-bucket histogram
-  `<distribution>` are sent — see §4.2)
 - ❌ Any timestamp finer than UTC date
 - ❌ The IP, browser, OS, or extension version
 - ❌ The user's chosen RPC endpoint

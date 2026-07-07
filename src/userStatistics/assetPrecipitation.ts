@@ -1,6 +1,6 @@
 import { ExternalDependencies } from './ExternalDeps';
 import { AddressAssetPrecipitation } from './types';
-import { getCurrentUtcDate } from './utils';
+import { formatReportNumber, getCurrentUtcDate } from './utils';
 
 async function saveAddressAssetPrecipitation(
   address: string,
@@ -20,9 +20,16 @@ async function loadAssetPrecipitationBy(
 
 export async function updateAddressAssetPrecipitation(
   address: string,
-  newData: AddressAssetPrecipitation,
+  rawData: AddressAssetPrecipitation,
   deps: ExternalDependencies
 ): Promise<AddressAssetPrecipitation> {
+  const newData: AddressAssetPrecipitation = {
+    ...rawData,
+    trxBalance: formatReportNumber(rawData.trxBalance),
+    usdtBalance: formatReportNumber(rawData.usdtBalance),
+    totalBalanceInUSD: formatReportNumber(rawData.totalBalanceInUSD),
+    realTokenUsd: formatReportNumber(rawData.realTokenUsd),
+  };
   const date = getCurrentUtcDate();
   const existingData = await loadAssetPrecipitationBy(address, date, deps);
 
