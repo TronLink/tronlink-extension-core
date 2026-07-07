@@ -33,7 +33,7 @@ const rangeMap: Record<string, string> = {
   '10m_infinite': 'A9',
 };
 
-function buildTxnReportString(records: TransactionRecord[]): string {
+export function buildTxnReportString(records: TransactionRecord[]): string {
   return records
     .map((record) => {
       const distStr = (record.txnAmountDistributions || [])
@@ -43,7 +43,7 @@ function buildTxnReportString(records: TransactionRecord[]): string {
         })
         .join(',');
 
-      return `V1Y|${record.uid}|${record.addressType}|${record.actionType}|${record.count}|${record.tokenAddress}|${record.tokenAmount}|${record.energy}|${record.bandwidth}|${record.burn}|${record.date}|${distStr}|`;
+      return `V1Y|${record.uid}|${record.addressType}|${record.actionType}|${record.count}|${record.tokenAddress}|0|${record.energy}|${record.bandwidth}|${record.burn}|${record.date}|${distStr}|`;
     })
     .join('');
 }

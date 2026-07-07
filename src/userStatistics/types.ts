@@ -83,7 +83,6 @@ export type TransactionRecord = {
   actionType: number;
   count: number;
   tokenAddress: string;
-  tokenAmount: string;
   energy: string;
   bandwidth: string;
   burn: string;
