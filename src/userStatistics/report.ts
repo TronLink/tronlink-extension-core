@@ -8,13 +8,16 @@ import {
   updateAndDeleteAllReportedTransactionRecord,
 } from './transactionRecord';
 import { AddressAssetPrecipitation, TransactionRecord } from './types';
+import { formatReportNumber } from './utils';
 
-function buildFundReportString(records: AddressAssetPrecipitation[]): string {
+export function buildFundReportString(records: AddressAssetPrecipitation[]): string {
   return records
-    .map(
-      (record) =>
-        `V1X|${record.uid}|${record.addressType}|${record.trxBalance}|${record.usdtBalance}|${record.realTokenUsd}|${record.date}|`,
-    )
+    .map((record) => {
+      const trxBalance = formatReportNumber(record.trxBalance);
+      const usdtBalance = formatReportNumber(record.usdtBalance);
+      const realTokenUsd = formatReportNumber(record.realTokenUsd);
+      return `V1X|${record.uid}|${record.addressType}|${trxBalance}|${usdtBalance}|${realTokenUsd}|${record.date}|`;
+    })
     .join('');
 }
 
@@ -30,7 +33,7 @@ const rangeMap: Record<string, string> = {
   '10m_infinite': 'A9',
 };
 
-function buildTxnReportString(records: TransactionRecord[]): string {
+export function buildTxnReportString(records: TransactionRecord[]): string {
   return records
     .map((record) => {
       const distStr = (record.txnAmountDistributions || [])
@@ -40,7 +43,7 @@ function buildTxnReportString(records: TransactionRecord[]): string {
         })
         .join(',');
 
-      return `V1Y|${record.uid}|${record.addressType}|${record.actionType}|${record.count}|${record.tokenAddress}|${record.tokenAmount}|${record.energy}|${record.bandwidth}|${record.burn}|${record.date}|${distStr}|`;
+      return `V1Y|${record.uid}|${record.addressType}|${record.actionType}|${record.count}|${record.tokenAddress}|0|${record.energy}|${record.bandwidth}|${record.burn}|${record.date}|${distStr}|`;
     })
     .join('');
 }

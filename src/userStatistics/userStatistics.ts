@@ -141,7 +141,6 @@ export async function getAndUpdateTransactionRecord(
         actionType,
         count: 1,
         tokenAddress,
-        tokenAmount: amountFormat,
         energy: transferCostInfo.energy.toString(),
         bandwidth: transferCostInfo.bandwidth.toString(),
         burn: transferCostInfo.burn.toString(),

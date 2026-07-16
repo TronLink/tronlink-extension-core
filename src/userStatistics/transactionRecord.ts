@@ -51,7 +51,6 @@ export async function updateTransactionRecord(
   );
 
   if (existing) {
-    existing.tokenAmount = safeAdd(existing.tokenAmount, newRecord.tokenAmount);
     existing.count = Number(safeAdd(existing.count, newRecord.count));
     existing.energy = safeAdd(existing.energy, newRecord.energy);
     existing.bandwidth = safeAdd(existing.bandwidth, newRecord.bandwidth);
