@@ -81,14 +81,14 @@
     "typescript": "5.8.3",
     "webpack": "5.104.1",
     "webpack-cli": "5.1.4",
-    "webpack-dev-server": "5.2.5",
+    "webpack-dev-server": "5.2.6",
     "webpack-merge": "5.8.0",
     "webpack-node-externals": "3.0.0"
   },
   "pnpm": {
     "overrides": {
       "braces": "3.0.3",
-      "axios": "1.16.0",
+      "axios": "1.18.1",
       "elliptic": "6.6.1",
       "micromatch": "4.0.8",
       "express": "4.20.0",
@@ -112,15 +112,16 @@
       "node-forge": "1.4.0",
       "qs": "6.15.2",
       "ws": "8.21.0",
-      "brace-expansion@>=5.0.0 <5.0.6": "5.0.6",
-      "shell-quote": "1.8.4",
+      "brace-expansion@<1.1.16": "1.1.16",
+      "brace-expansion@>=5.0.0 <5.0.7": "5.0.7",
+      "shell-quote": "1.10.0",
       "serialize-javascript": "7.0.5",
       "picomatch": "2.3.2",
       "follow-redirects": "1.16.0",
       "fast-uri": "3.1.2",
       "@babel/plugin-transform-modules-systemjs": "7.29.4",
       "uuid": "11.1.1",
-      "js-yaml": "4.2.0",
+      "js-yaml": "4.3.0",
       "launch-editor": "2.14.1",
       "websocket-driver": "0.7.5"
     }
