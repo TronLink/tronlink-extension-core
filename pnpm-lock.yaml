@@ -6,7 +6,7 @@ settings:
 
 overrides:
   braces: 3.0.3
-  axios: 1.18.1
+  axios: 1.20.0
   elliptic: 6.6.1
   micromatch: 4.0.8
   express: 4.20.0
@@ -30,7 +30,7 @@ overrides:
   node-forge: 1.4.0
   qs: 6.15.2
   ws: 8.21.0
-  brace-expansion: 5.0.9
+  brace-expansion: 5.0.12
   minimatch@3: 10.2.5
   test-exclude@6: 8.0.0
   shell-quote: 1.10.0
@@ -1717,8 +1717,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  axios@1.18.1:
-    resolution: {integrity: sha512-3nTvFlvpn9Zu/RkHUqtc7/+al4UpRW5az71ap5zccp6e8RAYEzhMTecX8Dz1wWDYrPpUoB1HAQEGEAEvUr7S9g==}
+  axios@1.20.0:
+    resolution: {integrity: sha512-r8aOh8j9cGKpgQAqpzrUHnSIc6a59Y3Xf/cv8sy1DrHCkZHzQGEuoq1tARk6qSyDdtQGSDgpb9kFlruzPvrgwg==}
 
   babel-jest@29.7.0:
     resolution: {integrity: sha512-BrvGY3xZSwEcCzKvKsCi2GgHqDqsYkOP4/by5xCgIwGXQxIEh+8ew3gmrE1y7XRR6LHZIj6yLYnUi/mm2KXKBg==}
@@ -1824,8 +1824,8 @@ packages:
   bonjour-service@1.3.0:
     resolution: {integrity: sha512-3YuAUiSkWykd+2Azjgyxei8OWf8thdn8AITIog2M4UICzoqfjlqr64WIjEXZllf/W6vK1goqleSR6brGomxQqA==}
 
-  brace-expansion@5.0.9:
-    resolution: {integrity: sha512-ScQ4IuvIEF1TMlP7Zt+vjJ//9zlPb2SDcxWxM3bk8s6t6GGdJ7KO1dCcTidOPJKePW30LE/2cT7wCyPho9/Wxg==}
+  brace-expansion@5.0.12:
+    resolution: {integrity: sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ==}
     engines: {node: 20 || >=22}
 
   braces@3.0.3:
@@ -5463,7 +5463,7 @@ snapshots:
   '@ledgerhq/cryptoassets-evm-signatures@13.7.1':
     dependencies:
       '@ledgerhq/live-env': 2.31.0
-      axios: 1.18.1
+      axios: 1.20.0
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -5480,7 +5480,7 @@ snapshots:
       '@ledgerhq/errors': 6.34.0
       '@ledgerhq/logs': 6.17.0
       '@ledgerhq/types-live': 6.103.0(react@19.0.0)
-      axios: 1.18.1
+      axios: 1.20.0
       eip55: 2.1.1
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
@@ -5500,7 +5500,7 @@ snapshots:
       '@ethersproject/constants': 5.8.0
       '@ethersproject/hash': 5.8.0
       '@ledgerhq/live-env': 2.31.0
-      axios: 1.18.1
+      axios: 1.20.0
       crypto-js: 4.2.0
     transitivePeerDependencies:
       - debug
@@ -5519,7 +5519,7 @@ snapshots:
       '@ledgerhq/hw-transport-mocker': 6.33.1
       '@ledgerhq/logs': 6.16.0
       '@ledgerhq/types-live': 6.103.0(react@19.0.0)
-      axios: 1.18.1
+      axios: 1.20.0
       bignumber.js: 9.3.1
       jest-sonar: 0.2.16
       semver: 7.7.4
@@ -6159,7 +6159,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  axios@1.18.1:
+  axios@1.20.0:
     dependencies:
       follow-redirects: 1.16.0
       form-data: 4.0.6
@@ -6323,7 +6323,7 @@ snapshots:
       fast-deep-equal: 3.1.3
       multicast-dns: 7.2.5
 
-  brace-expansion@5.0.9:
+  brace-expansion@5.0.12:
     dependencies:
       balanced-match: 4.0.4
 
@@ -7816,7 +7816,7 @@ snapshots:
 
   minimatch@10.2.5:
     dependencies:
-      brace-expansion: 5.0.9
+      brace-expansion: 5.0.12
 
   minimist@1.2.8: {}
 
@@ -8490,7 +8490,7 @@ snapshots:
 
   tronweb@6.5.1:
     dependencies:
-      axios: 1.18.1
+      axios: 1.20.0
       bignumber.js: 9.1.2
       ethereum-cryptography: 2.2.1
       ethers: 6.17.0
