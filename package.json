@@ -88,7 +88,7 @@
   "pnpm": {
     "overrides": {
       "braces": "3.0.3",
-      "axios": "1.18.1",
+      "axios": "1.20.0",
       "elliptic": "6.6.1",
       "micromatch": "4.0.8",
       "express": "4.20.0",
@@ -112,7 +112,7 @@
       "node-forge": "1.4.0",
       "qs": "6.15.2",
       "ws": "8.21.0",
-      "brace-expansion": "5.0.9",
+      "brace-expansion": "5.0.12",
       "minimatch@3": "10.2.5",
       "test-exclude@6": "8.0.0",
       "shell-quote": "1.10.0",
