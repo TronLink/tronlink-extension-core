@@ -4,7 +4,7 @@
 
 [![npm](https://img.shields.io/npm/v/@tronlink/core.svg)](https://www.npmjs.com/package/@tronlink/core)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
-[![Node](https://img.shields.io/badge/node-%3E%3D18.19-brightgreen.svg)](#prerequisites)
+[![Node](https://img.shields.io/badge/node-24.22.1-brightgreen.svg)](#prerequisites)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%3E%3D4.9-blue.svg)](https://www.typescriptlang.org/)
 
 ---
@@ -75,8 +75,8 @@ TypeScript declaration files (`.d.ts`) are included.
 
 | Tool       | Required version |
 |------------|------------------|
-| Node.js    | `>= 18.19.0` (recommended `20.x`) |
-| pnpm       | `>= 7.32.0` (used for development) |
+| Node.js    | `24.22.1` |
+| pnpm       | `10.12.4` (used for development) |
 | TypeScript | `>= 4.9.5` (consumers using TS) |
 
 Browser usage requires bundlers that handle Node polyfills (the package depends on `buffer`, `crypto`, `stream` shims; see `webpack.config.js` for the configuration used internally).
