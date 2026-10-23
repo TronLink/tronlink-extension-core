@@ -17,14 +17,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20.19.2
+          node-version: 24.22.1
 
       - name: Load nvm
         run: |
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm install 20.19.2
-          nvm use 20.19.2
+          nvm install 24.22.1
+          nvm use 24.22.1
           npm install -g pnpm@10.12.4
           pnpm --version
 
@@ -33,7 +33,7 @@ jobs:
           unset NODE_ENV
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm use 20.19.2
+          nvm use 24.22.1
           npm install -g pnpm@10.12.4
           pnpm install
 
@@ -41,7 +41,7 @@ jobs:
         run: |
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm use 20.19.2
+          nvm use 24.22.1
           pnpm run build
 
       - name: Get short commit hash
