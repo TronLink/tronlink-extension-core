@@ -35,12 +35,14 @@ export class LedgerTrxWebHid extends LedgerWebHid {
 
   protected async makeApp(): Promise<AppTrx> {
     this._transport = await TransportWebHID.create();
+    this.registerTransport(this._transport);
     this._app = new AppTrx(this._transport);
     return this._app;
   }
 
   protected async cleanUp() {
     this._app = undefined;
+    this.unregisterTransport(this._transport);
     await this._transport?.close();
   }
 }

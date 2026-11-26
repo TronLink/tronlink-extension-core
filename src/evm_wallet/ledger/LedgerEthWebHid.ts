@@ -56,12 +56,14 @@ export class LedgerEthWebHid extends LedgerWebHid {
 
   protected async makeApp(): Promise<AppEth> {
     this._transport = await TransportWebHID.create();
+    this.registerTransport(this._transport);
     this._app = new AppEth(this._transport);
     return this._app;
   }
 
   protected async cleanUp() {
     this._app = undefined;
+    this.unregisterTransport(this._transport);
     await this._transport?.close();
   }
 }

@@ -8,7 +8,11 @@ jest.mock('@ledgerhq/hw-app-trx');
 
 describe('ledgerTrxWebHid - makeApp', () => {
   it('happy path', async () => {
-    TransportWebHID.create = jest.fn().mockReturnValue({ close: jest.fn() });
+    TransportWebHID.create = jest.fn().mockResolvedValue({
+      on: jest.fn(),
+      off: jest.fn(),
+      close: jest.fn(),
+    });
     AppTrx.constructor = jest.fn().mockReturnValue({});
 
     let ledgerTrxWebHid = new LedgerTrxWebHid();
