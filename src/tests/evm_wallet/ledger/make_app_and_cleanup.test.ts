@@ -13,13 +13,10 @@ describe('LedgerEthWebHid - makeApp & cleanUp', () => {
   });
 
   test('makeApp', async () => {
-    const mockValue = {
-      testKey: 'testVal',
-    };
-    jest.mock('@ledgerhq/hw-transport-webhid', () => {
-      return {
-        create: jest.fn().mockResolvedValue(mockValue),
-      };
+    TransportWebHID.create = jest.fn().mockResolvedValue({
+      on: jest.fn(),
+      off: jest.fn(),
+      close: jest.fn(),
     });
     // @ts-ignore
     await ledgerEthWebHid.makeApp();
